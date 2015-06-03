@@ -88,6 +88,12 @@ while ($reader->read()) {
     }
 }
 
+/*
+ * Таблица cscart_categories
+ * id_path - путь из id до категории, например, 166/167/165
+ * level - уровень вложенности
+ * status - А-включено, D-выключено, -скрыто
+ */
 $inStr = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category) VALUES";
 $inArr = [];
 foreach($categories as $c){
