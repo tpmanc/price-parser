@@ -6,12 +6,13 @@ ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-include('vendor/autoload.php');
+//include('vendor/autoload.php');
 
+//use Classes\FileHelper;
 
 // echo 'Скачиваем архивы <br />';
-// file_put_contents("price.zip", fopen("http://www.netlab.ru/products/priceXML.zip", 'r'));
-// file_put_contents("properties.zip", fopen("http://www.netlab.ru/products/GoodsProperties.zip", 'r'));
+//FileHelper::download("http://www.netlab.ru/products/priceXML.zip", "price.zip");
+//FileHelper::download("http://www.netlab.ru/products/GoodsProperties.zip", "properties.zip");
 // echo 'ок! <hr />';
 
 
@@ -26,8 +27,11 @@ include('vendor/autoload.php');
 // } else {
 //     echo 'ошибка';
 // }
-
-mysql_query('truncate table `cscart_category_descriptions`');
+mysql_query("SET NAMES 'utf8';");
+mysql_query("SET CHARACTER SET 'utf8';");
+mysql_query("SET SESSION collation_connection = 'utf8_general_ci';");
+mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
+mysql_query("TRUNCATE TABLE `cscart_categories`");
 
 $categories = [];
 $products = [];
@@ -42,7 +46,12 @@ while ($reader->read()) {
             if ($reader->localName == 'category') {
                 $categoryId = $reader->getAttribute("id");
                 $parentId = $reader->getAttribute("parentId");
-                $categories[$categoryId] = ['id' => $categoryId, 'parentId' => $parentId, 'title' => $reader->readString()];
+                $title = $reader->readString();
+                $categories[$categoryId] = [
+                    'id' => $categoryId,
+                    'parentId' => $parentId,
+                    'title' => $title,
+                ];
             }
 /*
             // parsing <offer> element
@@ -88,17 +97,41 @@ while ($reader->read()) {
     }
 }
 
-/*
+/**
  * Таблица cscart_categories
  * id_path - путь из id до категории, например, 166/167/165
- * level - уровень вложенности
+ * level - уровень вложенности 1,2,3...
  * status - А-включено, D-выключено, -скрыто
  */
-$inStr = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category) VALUES";
-$inArr = [];
+$inStr1 = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category, description, meta_keywords, meta_description, page_title, age_warning_message) VALUES";
+$inStr2 = "INSERT INTO cscart_categories(category_id, parent_id, id_path, level, company_id, usergroup_ids, status, product_count, position, timestamp, is_op, localization, age_verification, age_limit, parent_age_verification, parent_age_limit, selected_views, default_view, product_details_view, product_columns, yml_market_category, yml_disable_cat) VALUES";
+$inArr1 = [];
+$inArr2 = [];
 foreach($categories as $c){
-    $inArr[] = '('.$c['id'].', "ru", "'.$c['title'].'"")';
+    $level = 1; // level counter
+    $idPathArr = [
+        $c['id']
+    ];
+    $parentId = $c['parentId'];
+    while( $parentId !== null ){
+        $idPathArr[] = $categories[$parentId]['id'];
+        $level++;
+        $parentId = $categories[$parentId]['parentId'];
+    }
+    $idPathArr = array_reverse($idPathArr);
+    $par = $c['parentId'];
+    if($par == null){
+        $par = 0;
+    }
+    $inArr1[] = '('.$c['id'].', "ru", "'.mysql_real_escape_string($c['title']).'", "", "", "", "", "")';
+    $inArr2[] = '('.$c['id'].','.$par.',"'.implode('/', $idPathArr).'",'.$level.',1,0,"A",0,0,'.time().',"N","","N",0,"N",0,"","","default",0,"","N")';
+//  $inArr2[] = '('.$c['id'].','.$par.',"'.implode('/', $idPathArr).'",'.$level.',1,0,"A",0,!,'.time().',"N","","N",0,"N",0,"","","default",0,"","N")';
 }
+$inStr1 = $inStr1 . implode(',', $inArr1);
+$inStr2 = $inStr2 . implode(',', $inArr2);
 
-var_dump($categories);
+mysql_query($inStr1);
+mysql_query($inStr2);
+
+//var_dump($categories);
 exit();
