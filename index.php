@@ -104,6 +104,7 @@ while ($reader->read()) {
  * status - А-включено, D-выключено, -скрыто
  */
 $inStr1 = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category, description, meta_keywords, meta_description, page_title, age_warning_message) VALUES";
+// TODO: position filed in table cscart_categories
 $inStr2 = "INSERT INTO cscart_categories(category_id, parent_id, id_path, level, company_id, usergroup_ids, status, product_count, position, timestamp, is_op, localization, age_verification, age_limit, parent_age_verification, parent_age_limit, selected_views, default_view, product_details_view, product_columns, yml_market_category, yml_disable_cat) VALUES";
 $inArr1 = [];
 $inArr2 = [];
