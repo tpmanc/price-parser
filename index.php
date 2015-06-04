@@ -21,17 +21,13 @@ ini_set('display_startup_errors', 1);
 // if ($zip->open('./priceXML.zip') === true) {
 //     $zip->extractTo('./');
 //     $zip->close();
-    
-
-
 // } else {
 //     echo 'ошибка';
 // }
+
 mysql_query("SET NAMES 'utf8';");
 mysql_query("SET CHARACTER SET 'utf8';");
 mysql_query("SET SESSION collation_connection = 'utf8_general_ci';");
-mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
-mysql_query("TRUNCATE TABLE `cscart_categories`");
 
 $categories = [];
 $products = [];
@@ -97,12 +93,17 @@ while ($reader->read()) {
     }
 }
 
+// --------------- categories saving -------------------
 /**
  * Таблица cscart_categories
  * id_path - путь из id до категории, например, 166/167/165
  * level - уровень вложенности 1,2,3...
  * status - А-включено, D-выключено, -скрыто
  */
+/*
+mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
+mysql_query("TRUNCATE TABLE `cscart_categories`");
+
 $inStr1 = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category, description, meta_keywords, meta_description, page_title, age_warning_message) VALUES";
 // TODO: position filed in table cscart_categories
 $inStr2 = "INSERT INTO cscart_categories(category_id, parent_id, id_path, level, company_id, usergroup_ids, status, product_count, position, timestamp, is_op, localization, age_verification, age_limit, parent_age_verification, parent_age_limit, selected_views, default_view, product_details_view, product_columns, yml_market_category, yml_disable_cat) VALUES";
@@ -133,6 +134,17 @@ $inStr2 = $inStr2 . implode(',', $inArr2);
 
 mysql_query($inStr1);
 mysql_query($inStr2);
+*/
+// --------------- end categories saving -------------------
 
-//var_dump($categories);
-exit();
+
+
+// --------------- products saving -------------------
+/**
+ * cscart_product_descriptions - ($id, "ru", "$title", "", "", "", "", "", "", "", "", "")
+ * cscart_product_features_values - непонятно
+ * cscart_product_options - непонятно
+ * cscart_product_prices - ($id, $price, 0, 1, 0)
+ * cscart_products - ($id, $art, "P", "A", 1, 0 , $amount, $weight|0, $length|0, $width|0, $height|0, 0, 0, time(), time(), 0, "N", "N", "N", "B", "N", "N", "R", "Y", "N", "N", "Y", 10, 0, "N", "", 0, 0, 0, 0, 10, "N", 0, "P", "F", "default", $shipping_params???, "", "", "", "N", "N", "Y", 0, "Y", 0, 0, "", "", "", "", "", "", "")
+ * cscart_products_categories - ($productId, $categoryId, "M", 0)
+ */
