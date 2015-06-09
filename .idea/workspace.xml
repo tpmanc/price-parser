@@ -66,12 +66,16 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.687324" vertical-offset="0" max-vertical-offset="2844">
-              <caret line="106" column="61" selection-start-line="106" selection-start-column="61" selection-end-line="106" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.31549296" vertical-offset="3556" max-vertical-offset="4266">
+              <caret line="210" column="23" selection-start-line="210" selection-start-column="23" selection-end-line="210" selection-end-column="23" />
               <folding>
-                <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-                <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-                <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+                <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+                <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -252,11 +256,13 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1497006" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.11443779" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16766468" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11842981" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16566867" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -264,11 +270,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -297,9 +301,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2790">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -332,9 +340,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1854">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -344,9 +356,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1674">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -356,9 +372,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1674">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -368,9 +388,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1656">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -412,12 +436,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.687324" vertical-offset="0" max-vertical-offset="2844">
-          <caret line="106" column="61" selection-start-line="106" selection-start-column="61" selection-end-line="106" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.31549296" vertical-offset="3556" max-vertical-offset="4266">
+          <caret line="210" column="23" selection-start-line="210" selection-start-column="23" selection-end-line="210" selection-end-column="23" />
           <folding>
-            <marker date="1433834273379" expanded="true" signature="3611:3657" placeholder="DELETE FROM ..." />
-            <marker date="1433834273379" expanded="true" signature="3711:3871" placeholder="INSERT INTO ..." />
-            <marker date="1433834273379" expanded="true" signature="3889:4236" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5540:5586" placeholder="DELETE FROM ..." />
+            <marker date="1433841815024" expanded="true" signature="5640:5800" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="5818:6165" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8246:8464" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8482:8589" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="8607:9446" placeholder="INSERT INTO ..." />
+            <marker date="1433841815024" expanded="true" signature="9464:9555" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
