@@ -229,3 +229,8 @@ if( true ){
     mysql_query($inStr3) or die(mysql_error());
     mysql_query($inStr4);
 }
+
+// сохранение картинок
+//$s = 'http://www.netlab.ru/ISAPI/TestISAPI.dll?74614&amp;0';
+//$img = 'flower.jpg';
+//file_put_contents($img, file_get_contents($s));
