@@ -15,7 +15,7 @@ ini_set('display_startup_errors', 1);
 // Archives downloading
 echo 'Скачиваем архивы <br />';
 \ModuleController::downloadPrices();
-echo 'ок! <br /><hr />';
+echo 'ок! <br />';
 
 // Archives extracting
 echo 'Распаковываем архивы <br />';
@@ -24,7 +24,6 @@ if( \ModuleController::extract() ){
 }else{
     die('Ошибка при распаковке архивов <br />');
 }
-echo '<hr />';
 
 // Clear database
 \ModuleController::clearDatabase();

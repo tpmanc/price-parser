@@ -42,6 +42,7 @@ class FileParser {
                         $warranty = '';
                         $price = '';
                         $art = '';
+                        $pictureUrl = '';
                         $count = 0;
                         $weight = 0;
                         $length = 0;
@@ -67,6 +68,9 @@ class FileParser {
                                 }
                                 if($reader->name == 'uid'){
                                     $art = $reader->readString();
+                                }
+                                if($reader->name == 'picture'){
+                                    $pictureUrl = $reader->readString();
                                 }
                                 if($reader->name == 'count'){
                                     if( is_numeric($reader->readString()) ){
@@ -108,6 +112,7 @@ class FileParser {
                                     'width' => $width,
                                     'length' => $length,
                                     'count' => $count,
+                                    'pictureUrl' => $pictureUrl,
                                 ];
                                 break;
                             }
