@@ -5,7 +5,7 @@
 
 namespace Classes;
 /**
- * Downloading, unzipping etc...
+ * Downloading and unzipping
  */
 class FileHelper {
     /**
