@@ -10,7 +10,7 @@ namespace Classes;
  * @package Classes
  */
 class Image {
-    
+
     /**
      * Delete all products images in database and disk
      *
