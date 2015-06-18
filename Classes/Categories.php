@@ -9,7 +9,8 @@ namespace Classes;
  * Class to work with categories
  * @package Classes
  */
-class Categories {
+class Categories
+{
 
     /**
      * Delete all records of top menu in database

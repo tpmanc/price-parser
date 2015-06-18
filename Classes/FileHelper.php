@@ -7,7 +7,8 @@ namespace Classes;
 /**
  * Downloading and unzipping
  */
-class FileHelper {
+class FileHelper
+{
     /**
      * Download file from $url to $filePath folder
      * @param string $url File location

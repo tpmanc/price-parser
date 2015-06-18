@@ -9,7 +9,8 @@
 namespace Classes;
 
 
-class Features {
+class Features
+{
     /*
      * cscart_product_features - ($id, "", 1, $type, $categories, $parentId, $dOnProduct, $dOnCatalog, $dOnHeader, "A", $position, "N")
      * $categories - перечесление категорий через запятую, в которых будет доступна эта характеристика

@@ -6,11 +6,13 @@
 namespace Classes;
 
 
-class FileParser {
+class FileParser
+{
 
     /**
      * Parse xml with products
      *
+     * @param string $file Path to file
      * @return array Categories and products arrays
      */
     public static function parseCatsAndProducts($file)
