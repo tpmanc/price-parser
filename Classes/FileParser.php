@@ -185,6 +185,51 @@ class FileParser
      */
     public static function parseProperties($file)
     {
+        $properties = [];
+        $products = [];
 
+        $reader = new \XMLReader();
+        $reader->open($file);
+        while ($reader->read()) {
+            switch ($reader->nodeType) {
+                case (\XMLReader::ELEMENT):
+                    // parsing <property> element
+                    if ($reader->localName == 'property') {
+                        $propertyTitle = $reader->readString();
+                        $propertyId = $reader->getAttribute("id");
+                        $properties[] = [
+                            'propertyId' => $propertyId,
+                            'propertyTitle' => $propertyTitle,
+                        ];
+                    }
+                    // parsing <item> element
+                    if ($reader->localName == 'item') {
+                        $productProperties = [];
+                        $productId = $reader->getAttribute("id");
+
+                        // get product properties
+                        while ($reader->read()){
+                            if ($reader->nodeType == \XMLReader::ELEMENT) {
+                                $productProperties[] = [
+                                    'propertyId' => $reader->localName,
+                                    'propertyValue' => $reader->readString(),
+                                ];
+                            }
+                            if ($reader->nodeType == \XMLReader::END_ELEMENT && $reader->localName == 'item') {
+                                break;
+                            }
+                        }
+                        $products[] = [
+                            'productId' => $productId,
+                            'productProperties' => $productProperties
+                        ];
+                    }
+            }
+        }
+
+        return [
+            'properties' => $properties,
+            'products' => $products,
+        ];
     }
 }

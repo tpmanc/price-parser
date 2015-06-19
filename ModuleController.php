@@ -14,6 +14,7 @@ use \Classes\FileParser;
 use \Classes\Categories;
 use \Classes\Products;
 use \Classes\Image;
+use Classes\Properties;
 
 /**
  * Class ModuleController - provides methods to work with prices
@@ -45,6 +46,11 @@ class ModuleController
      * @var string Path to unzipped price
      */
     private static $unzippedPrice = './temp/Price.xml';
+
+    /**
+     * @var string Path to unzipped properties
+     */
+    private static $unzippedProperties = './temp/GoodsProperties.xml';
 
     /**
      * Downloading price and properties
@@ -96,6 +102,15 @@ class ModuleController
         }
 
         // TODO: property parsing
+        $arr = FileParser::parseProperties(self::$unzippedProperties);
+        $properties = $arr['properties'];
+        $products = $arr['products'];
+        $res = Properties::insertProperties($properties);
+        if( $res === true ){
+            echo 'Properties insert complete<br />';
+        }else{
+            echo 'Properties insert error: <br />', $res;
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ mysql_query("SET SESSION collation_connection = 'utf8_general_ci';");
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+ini_set('memory_limit', -1);
 
 // Archives downloading
 //echo 'Скачиваем архивы <br />';
@@ -26,10 +27,9 @@ ini_set('display_startup_errors', 1);
 //}
 
 // Clear database
-\ModuleController::clearDatabase();
+//\ModuleController::clearDatabase();
 
 // Fill empty database
-\ModuleController::fillEmptyDatabase();
-
+//\ModuleController::fillEmptyDatabase();
 
 exit();
