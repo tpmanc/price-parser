@@ -13,17 +13,17 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
 // Archives downloading
-echo 'Скачиваем архивы <br />';
-\ModuleController::downloadPrices();
-echo 'ок! <br />';
+//echo 'Скачиваем архивы <br />';
+//\ModuleController::downloadPrices();
+//echo 'ок! <br />';
 
 // Archives extracting
-echo 'Распаковываем архивы <br />';
-if( \ModuleController::extract() ){
-    echo 'Распаковка архивов завершена <br />';
-}else{
-    die('Ошибка при распаковке архивов <br />');
-}
+//echo 'Распаковываем архивы <br />';
+//if( \ModuleController::extract() ){
+//    echo 'Распаковка архивов завершена <br />';
+//}else{
+//    die('Ошибка при распаковке архивов <br />');
+//}
 
 // Clear database
 \ModuleController::clearDatabase();
@@ -33,8 +33,3 @@ if( \ModuleController::extract() ){
 
 
 exit();
-
-// сохранение картинок
-//$s = 'http://www.netlab.ru/ISAPI/TestISAPI.dll?74614&amp;0';
-//$img = 'flower.jpg';
-//file_put_contents($img, file_get_contents($s));

@@ -1,15 +1,15 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: prog3
- * Date: 11.06.15
- * Time: 17:15
+ * @author tpmanc <tpxtrime@mail.ru>
  */
 
 namespace Classes;
 
-
-class Features
+/**
+ * Class for work with products properties
+ * @package Classes
+ */
+class Properties
 {
     /*
      * cscart_product_features - ($id, "", 1, $type, $categories, $parentId, $dOnProduct, $dOnCatalog, $dOnHeader, "A", $position, "N")

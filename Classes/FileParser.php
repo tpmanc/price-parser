@@ -5,10 +5,12 @@
 
 namespace Classes;
 
-
+/**
+ * Class for parsing files
+ * @package Classes
+ */
 class FileParser
 {
-
     /**
      * Parse xml with products
      *
@@ -128,5 +130,61 @@ class FileParser
             'categories' => $categories,
             'products' => $products,
         ];
+    }
+
+    /**
+     * Parse xml with products
+     *
+     * @param string $file Path to file
+     * @return array Products arrays
+     */
+    public static function parseProductsPrices($file)
+    {
+        $products = [];
+
+        $reader = new \XMLReader();
+        $reader->open($file);
+        while ($reader->read()) {
+            switch ($reader->nodeType) {
+                case (\XMLReader::ELEMENT):
+                    // parsing <offer> element
+                    $product = [];
+                    if ($reader->localName == 'offer') {
+                        $product = [];
+                        $price = '';
+                        $productId = $reader->getAttribute("id");
+
+                        // get product properties
+                        while ($reader->read()){
+                            if ($reader->nodeType == \XMLReader::ELEMENT) {
+                                if($reader->name == 'priceE'){
+                                    $price = $reader->readString();
+                                }
+                            }
+                            if ($reader->nodeType == \XMLReader::END_ELEMENT && $reader->localName == 'offer') {
+                                $product = [
+                                    'id' => $productId,
+                                    'price' => $price,
+                                ];
+                                break;
+                            }
+                        }
+                    }
+                    $products[] = $product;
+            }
+        }
+
+        return $products;
+    }
+
+    /**
+     * Parse xml with products
+     *
+     * @param string $file Path to file
+     * @return array Categories and products arrays
+     */
+    public static function parseProperties($file)
+    {
+
     }
 }

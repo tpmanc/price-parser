@@ -23,9 +23,19 @@ class Image
      */
     public static function clearImages()
     {
-        // TODO: delete product images
-        //mysql_query("TRUNCATE TABLE `cscart_`");
-        //mysql_query("TRUNCATE TABLE `cscart_product_prices`");
+        $q = mysql_query('SELECT cscart_images_links.detailed_id, cscart_images.image_path
+                          FROM cscart_images_links
+                          LEFT JOIN cscart_images
+                              ON cscart_images.image_id = cscart_images_links.detailed_id
+                          WHERE object_type="product"
+                          ');
+        $idArr = [];
+        while ($r = mysql_fetch_array($q)) {
+            $idArr[] = $r['detailed_id'];
+            unlink(self::$imageFolder . $r['image_path']);
+        }
+        mysql_query('DELETE FROM cscart_images WHERE image_id in (' . implode(',', $idArr) . ')');
+        mysql_query('DELETE FROM cscart_images_links WHERE object_type="product" AND  detailed_id in (' . implode(',', $idArr) . ')');
     }
 
     /**
@@ -34,14 +44,19 @@ class Image
      * @param string $imagePath Web path to image
      * @param string $imageName Name of new file
      * @param integer $productId Product id
-     * @return bool
+     * @return array
      */
     public static function downloadAndLink($imagePath, $imageName, $productId)
     {
         $res1 = self::downloadImage($imagePath, $imageName);
+        if ($res1 === false) {
+            return [];
+        }
         $imageId = self::insertToDb($imageName);
-        $res2 = self::linkWithProduct($imageId, $productId);
-        return $res1 * $res2;
+        $link = self::linkWithProduct($imageId, $productId);
+        return [
+            'link' => $link,
+        ];
     }
 
     /**
@@ -84,18 +99,10 @@ class Image
      *
      * @param integer $imageId Image id
      * @param integer $productId Product id
-     * @return mixed
+     * @return string
      */
     private static function linkWithProduct($imageId, $productId)
     {
-        $result = mysql_query('INSERT INTO cscart_images_links(object_id, object_type, image_id, detailed_id, type, position) VALUES (
-                                '.$productId.',
-                                "product",
-                                0,
-                                '.$imageId.',
-                                "M",
-                                0
-                                )');
-        return $result === false ? false : true;
+        return '('.$productId.', "product", 0, '.$imageId.', "M", 0)';
     }
 }

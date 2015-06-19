@@ -4,8 +4,10 @@
  */
 
 namespace Classes;
+
 /**
  * Downloading and unzipping
+ * @package Classes
  */
 class FileHelper
 {

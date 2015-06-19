@@ -5,11 +5,14 @@
 
 namespace Classes;
 
+use Classes\Image;
+
 /**
  * Class to work with products
  * @package Classes
  */
-class Products {
+class Products
+{
 
     /**
      * Delete all products records in database
@@ -26,7 +29,7 @@ class Products {
 
     /**
      * Insert all products from input array to database
-     * @param array $products Array with prdicts info
+     * @param array $products Array with products info
      * @return mixed Return true or error
      */
     public static function insertProducts($products)
@@ -43,10 +46,12 @@ class Products {
         $inStr2 = "INSERT INTO cscart_product_prices(product_id, price, percentage_discount, lower_limit, usergroup_id) VALUES";
         $inStr3 = "INSERT INTO cscart_products(product_id, product_code, product_type, status, company_id, list_price, amount, weight, length, width, height, shipping_freight, low_avail_limit, timestamp, updated_timestamp, usergroup_ids, is_edp, edp_shipping, unlimited_download, tracking, free_shipping, feature_comparison, zero_price_action, is_pbp, is_op, is_oper, is_returnable, return_period, avail_since, out_of_stock_actions, localization, min_qty, max_qty, qty_step, list_qty_count, tax_ids, age_verification, age_limit, options_type, exceptions_type, details_layout, shipping_params, facebook_obj_type, yml_brand, yml_origin_country, yml_store, yml_pickup, yml_delivery, yml_cost, yml_export_yes, yml_bid, yml_cbid, yml_model, yml_sales_notes, yml_type_prefix, yml_market_category, yml_manufacturer_warranty, yml_seller_warranty, buy_now_url) VALUES";
         $inStr4 = "INSERT INTO cscart_products_categories(product_id, category_id, link_type, position) VALUES";
+        $inImgStr = "INSERT INTO cscart_images_links(object_id, object_type, image_id, detailed_id, type, position) VALUES";
         $inArr1 = [];
         $inArr2 = [];
         $inArr3 = [];
         $inArr4 = [];
+        $inArrImg = []; // array for create images queries
         $position = 0;
         $artOffset = 26493;
         $shipping_params = mysql_real_escape_string('a:5:{s:16:"min_items_in_box";i:0;s:16:"max_items_in_box";i:0;s:10:"box_length";i:0;s:9:"box_width";i:0;s:10:"box_height";i:0;}');
@@ -57,20 +62,38 @@ class Products {
                 $inArr2[] = '(' . $p['id'] . ', ' . $p['price'] . ', 0, 1, 0)';
                 $inArr3[] = '(' . $p['id'] . ', "' . ((int)$p['art'] + $artOffset) . '", "P", "A", 1, 0 , ' .$p['count']. ', ' . $p['weight'] . ', ' . $p['length'] . ', ' . $p['width'] . ', ' . $p['height'] . ', 0, 0, ' . time() . ', ' . time() . ', 0, "N", "N", "N", "B", "N", "N", "R", "Y", "N", "N", "Y", 10, 0, "N", "", 0, 0, 0, 0, 10, "N", 0, "P", "F", "default", "' . $shipping_params . '", "", "", "", "N", "N", "Y", 0, "Y", 0, 0, "", "", "", "", "", "", "")';
                 $inArr4[] = '('.$p['id'].', '.$p['categoryId'].', "M", 0)';
-            }
 
-            // TODO: image downloading
+                // TODO: image downloading
+                if ($p['pictureUrl'] != '') {
+                    $arr = Image::downloadAndLink($p['pictureUrl'], $p['id'] . '.jpg', $p['id']);
+                    $inArrImg[] = $arr['link'];
+                }
+            }
         }
         $inStr1 = $inStr1 . implode(',', $inArr1);
         $inStr2 = $inStr2 . implode(',', $inArr2);
         $inStr3 = $inStr3 . implode(',', $inArr3);
         $inStr4 = $inStr4 . implode(',', $inArr4);
+        $inImgStr = $inImgStr . implode(',', $inArrImg);
 
         mysql_query($inStr1) or die(mysql_error());
         mysql_query($inStr2) or die(mysql_error());
         mysql_query($inStr3) or die(mysql_error());
         mysql_query($inStr4) or die(mysql_error());
 
+        // save image links
+        mysql_query($inImgStr) or die(mysql_error());
+
         return true;
+    }
+
+    /**
+     * Update products prices from input array
+     * @param array $products Array with products prices
+     * @return mixed Return true or error
+     */
+    public static function updatePrices($products)
+    {
+        // TODO: update products prices function
     }
 }

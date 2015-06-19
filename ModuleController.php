@@ -7,16 +7,19 @@ require 'Classes/FileParser.php';
 require 'Classes/FileHelper.php';
 require 'Classes/Categories.php';
 require 'Classes/Products.php';
+require 'Classes/Image.php';
 
 use \Classes\FileHelper;
 use \Classes\FileParser;
 use \Classes\Categories;
 use \Classes\Products;
+use \Classes\Image;
 
 /**
  * Class ModuleController - provides methods to work with prices
  */
-class ModuleController {
+class ModuleController
+{
 
     /**
      * @var string Url for downloading price
@@ -39,13 +42,18 @@ class ModuleController {
     private static $propertiesZipPath = './temp/properties.zip';
 
     /**
+     * @var string Path to unzipped price
+     */
+    private static $unzippedPrice = './temp/Price.xml';
+
+    /**
      * Downloading price and properties
      * @return void
      */
     public static function downloadPrices()
     {
-        FileHelper::download( self::$priceUrl, self::$priceZipPath );
-        FileHelper::download( self::$propertiesUrl, self::$propertiesZipPath );
+        FileHelper::download(self::$priceUrl, self::$priceZipPath);
+        FileHelper::download(self::$propertiesUrl, self::$propertiesZipPath);
     }
 
     /**
@@ -54,8 +62,8 @@ class ModuleController {
      */
     public static function extract()
     {
-        $price = FileHelper::unzip( self::$priceZipPath, './temp/' );
-        $prop = FileHelper::unzip( self::$propertiesZipPath, './temp/' );
+        $price = FileHelper::unzip(self::$priceZipPath, './temp/');
+        $prop = FileHelper::unzip(self::$propertiesZipPath, './temp/');
 
         return $price * $prop;
     }
@@ -66,7 +74,7 @@ class ModuleController {
      */
     public static function fillEmptyDatabase()
     {
-        $arr = FileParser::parseCatsAndProducts('./temp/Price.xml');
+        $arr = FileParser::parseCatsAndProducts(self::$unzippedPrice);
         $categories = $arr['categories'];
         $products = $arr['products'];
 
@@ -96,7 +104,8 @@ class ModuleController {
      */
     public static function updateProductsPrices()
     {
-        // TODO: update products prices function
+        $products = FileParser::parseProductsPrices(self::$unzippedPrice);
+        Products::updatePrices($products);
     }
 
     /**
@@ -107,5 +116,6 @@ class ModuleController {
     {
         Categories::clearCategories();
         Products::clearProducts();
+        Image::clearImages();
     }
 }
