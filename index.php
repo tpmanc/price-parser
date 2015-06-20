@@ -2,7 +2,7 @@
 
 require 'ModuleController.php';
 
-mysql_connect('localhost', 'root', '');
+mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db('sc');
 mysql_query("SET NAMES 'utf8';");
 mysql_query("SET CHARACTER SET 'utf8';");
@@ -27,9 +27,9 @@ ini_set('memory_limit', -1);
 //}
 
 // Clear database
-//\ModuleController::clearDatabase();
+\ModuleController::clearDatabase();
 
 // Fill empty database
-//\ModuleController::fillEmptyDatabase();
+\ModuleController::fillEmptyDatabase();
 
 exit();

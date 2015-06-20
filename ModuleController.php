@@ -8,13 +8,14 @@ require 'Classes/FileHelper.php';
 require 'Classes/Categories.php';
 require 'Classes/Products.php';
 require 'Classes/Image.php';
+require 'Classes/Properties.php';
 
 use \Classes\FileHelper;
 use \Classes\FileParser;
 use \Classes\Categories;
 use \Classes\Products;
 use \Classes\Image;
-use Classes\Properties;
+use \Classes\Properties;
 
 /**
  * Class ModuleController - provides methods to work with prices
@@ -131,6 +132,7 @@ class ModuleController
     {
         Categories::clearCategories();
         Products::clearProducts();
-        Image::clearImages();
+        Properties::clearProperties();
+        // Image::clearImages();
     }
 }

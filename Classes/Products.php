@@ -44,7 +44,14 @@ class Products
          */
         $inStr1 = "INSERT INTO cscart_product_descriptions(product_id, lang_code, product, shortname, short_description, full_description, meta_keywords, meta_description, search_words, page_title, age_warning_message, promo_text) VALUES";
         $inStr2 = "INSERT INTO cscart_product_prices(product_id, price, percentage_discount, lower_limit, usergroup_id) VALUES";
-        $inStr3 = "INSERT INTO cscart_products(product_id, product_code, product_type, status, company_id, list_price, amount, weight, length, width, height, shipping_freight, low_avail_limit, timestamp, updated_timestamp, usergroup_ids, is_edp, edp_shipping, unlimited_download, tracking, free_shipping, feature_comparison, zero_price_action, is_pbp, is_op, is_oper, is_returnable, return_period, avail_since, out_of_stock_actions, localization, min_qty, max_qty, qty_step, list_qty_count, tax_ids, age_verification, age_limit, options_type, exceptions_type, details_layout, shipping_params, facebook_obj_type, yml_brand, yml_origin_country, yml_store, yml_pickup, yml_delivery, yml_cost, yml_export_yes, yml_bid, yml_cbid, yml_model, yml_sales_notes, yml_type_prefix, yml_market_category, yml_manufacturer_warranty, yml_seller_warranty, buy_now_url) VALUES";
+        $inStr3 = "INSERT INTO cscart_products(product_id, product_code, product_type, status, company_id, list_price, 
+                    amount, weight, length, width, height, shipping_freight, low_avail_limit, timestamp, updated_timestamp, 
+                    usergroup_ids, is_edp, edp_shipping, unlimited_download, tracking, free_shipping, feature_comparison, 
+                    zero_price_action, is_pbp, is_op, is_oper, is_returnable, return_period, avail_since, out_of_stock_actions, 
+                    localization, min_qty, max_qty, qty_step, list_qty_count, tax_ids, age_verification, age_limit, options_type, 
+                    exceptions_type, details_layout, shipping_params, facebook_obj_type, yml_brand, yml_origin_country, yml_store, 
+                    yml_pickup, yml_delivery, yml_cost, yml_export_yes, yml_bid, yml_cbid, yml_model, yml_sales_notes, yml_type_prefix, 
+                    yml_market_category, yml_manufacturer_warranty, yml_seller_warranty, buy_now_url) VALUES";
         $inStr4 = "INSERT INTO cscart_products_categories(product_id, category_id, link_type, position) VALUES";
         $inImgStr = "INSERT INTO cscart_images_links(object_id, object_type, image_id, detailed_id, type, position) VALUES";
         $inArr1 = [];
@@ -64,10 +71,10 @@ class Products
                 $inArr4[] = '('.$p['id'].', '.$p['categoryId'].', "M", 0)';
 
                 // TODO: image downloading
-                if ($p['pictureUrl'] != '') {
-                    $arr = Image::downloadAndLink($p['pictureUrl'], $p['id'] . '.jpg', $p['id']);
-                    $inArrImg[] = $arr['link'];
-                }
+                // if ($p['pictureUrl'] != '') {
+                //     $arr = Image::downloadAndLink($p['pictureUrl'], $p['id'] . '.jpg', $p['id']);
+                //     $inArrImg[] = $arr['link'];
+                // }
             }
         }
         $inStr1 = $inStr1 . implode(',', $inArr1);
@@ -82,7 +89,7 @@ class Products
         mysql_query($inStr4) or die(mysql_error());
 
         // save image links
-        mysql_query($inImgStr) or die(mysql_error());
+        // mysql_query($inImgStr) or die(mysql_error());
 
         return true;
     }

@@ -58,7 +58,8 @@ class Properties
         }
         $categories = implode(',', $cArr);
 
-        $inStr1 = 'INSERT INTO cscart_product_features(feature_id, feature_code, company_id, feature_type, categories_path, parent_id, display_on_product, display_on_catalog, display_on_header, status, "position", comparison) VALUES';
+        $inStr1 = 'INSERT INTO cscart_product_features(feature_id, feature_code, company_id, feature_type, categories_path, parent_id, 
+                                display_on_product, display_on_catalog, display_on_header, status, position, comparison) VALUES';
         $inStr2 = 'INSERT INTO cscart_product_features_descriptions(feature_id, description, full_description, prefix, suffix, lang_code) VALUES';
         $inArr1 = [];
         $inArr2 = [];
@@ -68,7 +69,7 @@ class Properties
             $id = (int)str_replace('p', '', $p['propertyId']);
             $type = 'T';
             $inArr1[] = '('.$id.', "", 1, "'.$type.'", "'.$categories.'", 0, "Y", "Y", "N", "A", '.$position.', "N")';
-            $inArr2[] = '('.$id.', "'.$p['propertyTitle'].'", "", "", "", "ru")';
+            $inArr2[] = '('.$id.', "'.mysql_real_escape_string($p['propertyTitle']).'", "", "", "", "ru")';
         }
 
         $inStr1 = $inStr1 . implode(',', $inArr1);
