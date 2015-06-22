@@ -112,6 +112,12 @@ class ModuleController
         }else{
             echo 'Properties insert error: <br />', $res;
         }
+        $res = Properties::addPropertyToProduct($products);
+        if( $res === true ){
+            echo 'Properties links insert complete<br />';
+        }else{
+            echo 'Properties links insert error: <br />', $res;
+        }
     }
 
     /**

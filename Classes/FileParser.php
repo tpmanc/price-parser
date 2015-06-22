@@ -185,6 +185,7 @@ class FileParser
      */
     public static function parseProperties($file)
     {
+        //TODO: product id have "1" in 1 position
         $properties = [];
         $products = [];
 

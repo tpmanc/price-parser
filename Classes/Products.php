@@ -32,7 +32,7 @@ class Products
      * @param array $products Array with products info
      * @return mixed Return true or error
      */
-    public static function insertProducts($products)
+    public static function insertProducts(array $products)
     {
         /*
          * cscart_product_descriptions - ($id, "ru", "$title", "", "", "", "", "", "", "", "", "")
