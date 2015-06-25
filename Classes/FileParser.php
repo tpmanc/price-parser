@@ -185,7 +185,6 @@ class FileParser
      */
     public static function parseProperties($file)
     {
-        //TODO: product id have "1" in 1 position
         $properties = [];
         $products = [];
 
@@ -221,7 +220,7 @@ class FileParser
                             }
                         }
                         $products[] = [
-                            'productId' => $productId,
+                            'productId' => mb_strcut($productId, 1),
                             'productProperties' => $productProperties
                         ];
                     }
