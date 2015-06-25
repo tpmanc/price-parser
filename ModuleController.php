@@ -84,40 +84,48 @@ class ModuleController
         $arr = FileParser::parseCatsAndProducts(self::$unzippedPrice);
         $categories = $arr['categories'];
         $products = $arr['products'];
+        $images = $arr['images'];
 
         // Categories saving
-        Categories::clearCategories();
+//        $res = Categories::insertCategories($categories);
+//        if( $res === true ){
+//            echo 'Categories insert complete<br />';
+//        }else{
+//            echo 'Categories insert error: <br />', $res;
+//        }
 
-        $res = Categories::insertCategories($categories);
-        if( $res === true ){
-            echo 'Categories insert complete<br />';
-        }else{
-            echo 'Categories insert error: <br />', $res;
-        }
+        // Products saving
+//        $res = Products::insertProducts($products);
+//        if( $res === true ){
+//            echo 'Products insert complete<br />';
+//        }else{
+//            echo 'Products insert error: <br />', $res;
+//        }
 
-        $res = Products::insertProducts($products);
-        if( $res === true ){
+        // Images saving
+        $res = Image::downloadAndLink($images);
+        if( $res == true ){
             echo 'Products insert complete<br />';
         }else{
             echo 'Products insert error: <br />', $res;
         }
 
         // Properties parsing and saving
-        $arr = FileParser::parseProperties(self::$unzippedProperties);
-        $properties = $arr['properties'];
-        $products = $arr['products'];
-        $res = Properties::insertProperties($properties);
-        if( $res === true ){
-            echo 'Properties insert complete<br />';
-        }else{
-            echo 'Properties insert error: <br />', $res;
-        }
-        $res = Properties::addPropertyToProduct($products);
-        if( $res === true ){
-            echo 'Properties links insert complete<br />';
-        }else{
-            echo 'Properties links insert error: <br />', $res;
-        }
+//        $arr = FileParser::parseProperties(self::$unzippedProperties);
+//        $properties = $arr['properties'];
+//        $products = $arr['products'];
+//        $res = Properties::insertProperties($properties);
+//        if( $res === true ){
+//            echo 'Properties insert complete<br />';
+//        }else{
+//            echo 'Properties insert error: <br />', $res;
+//        }
+//        $res = Properties::addPropertyToProduct($products);
+//        if( $res === true ){
+//            echo 'Properties links insert complete<br />';
+//        }else{
+//            echo 'Properties links insert error: <br />', $res;
+//        }
     }
 
     /**
@@ -136,9 +144,9 @@ class ModuleController
      */
     public static function clearDatabase()
     {
-        Categories::clearCategories();
-        Products::clearProducts();
-        Properties::clearProperties();
-        // Image::clearImages();
+//        Categories::clearCategories();
+//        Products::clearProducts();
+//        Properties::clearProperties();
+         Image::clearImages();
     }
 }

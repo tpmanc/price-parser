@@ -95,11 +95,10 @@ class Properties
      * Insert properties from input array to database
      * Using table: cscart_product_features_values
      * @param array $products Array with properties values for each product
-     * @return void
+     * @return boolean
      */
     public static function addPropertyToProduct(array $products)
     {
-        //TODO: insert products properties values
         $inStr = 'INSERT INTO cscart_product_features_values(feature_id, product_id, variant_id, value, value_int, lang_code) VALUES';
         $inArr = [];
         foreach ($products as $p) {

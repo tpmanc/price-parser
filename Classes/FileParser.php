@@ -21,6 +21,7 @@ class FileParser
     {
         $categories = [];
         $products = [];
+        $images = [];
         $currency = 1;
 
         $reader = new \XMLReader();
@@ -82,6 +83,12 @@ class FileParser
                                 }
                                 if($reader->name == 'picture'){
                                     $pictureUrl = $reader->readString();
+                                    if ($pictureUrl !== '') {
+                                        $images[] = [
+                                            'productId' => $productId,
+                                            'pictureUrl' => $pictureUrl . '&id=' . $productId,
+                                        ];
+                                    }
                                 }
                                 if($reader->name == 'count'){
                                     if( is_numeric($reader->readString()) ){
@@ -123,7 +130,6 @@ class FileParser
                                     'width' => $width,
                                     'length' => $length,
                                     'count' => $count,
-                                    'pictureUrl' => $pictureUrl,
                                 ];
                                 break;
                             }
@@ -136,6 +142,7 @@ class FileParser
         return [
             'categories' => $categories,
             'products' => $products,
+            'images' => $images,
         ];
     }
 
