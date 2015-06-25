@@ -73,11 +73,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileParser.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileParser.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Classes/FileParser.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.38488576" vertical-offset="3129" max-vertical-offset="4320">
-              <caret line="186" column="5" selection-start-line="186" selection-start-column="5" selection-end-line="186" selection-end-column="5" />
+            <state vertical-scroll-proportion="-5.111111" vertical-offset="1086" max-vertical-offset="4446">
+              <caret line="68" column="67" selection-start-line="68" selection-start-column="67" selection-end-line="68" selection-end-column="67" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
               </folding>
@@ -85,11 +85,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModuleController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ModuleController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ModuleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1869" max-vertical-offset="2592">
-              <caret line="140" column="28" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.77504396" vertical-offset="1593" max-vertical-offset="2592">
+              <caret line="118" column="36" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
               </folding>
@@ -183,10 +183,10 @@
         <option value="$PROJECT_DIR$/Classes/Features.php" />
         <option value="$PROJECT_DIR$/Classes/FileHelper.php" />
         <option value="$PROJECT_DIR$/index.php" />
-        <option value="$PROJECT_DIR$/ModuleController.php" />
         <option value="$PROJECT_DIR$/Classes/Products.php" />
         <option value="$PROJECT_DIR$/Classes/Properties.php" />
         <option value="$PROJECT_DIR$/Classes/FileParser.php" />
+        <option value="$PROJECT_DIR$/ModuleController.php" />
       </list>
     </option>
   </component>
@@ -943,16 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ModuleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1869" max-vertical-offset="2592">
-          <caret line="140" column="28" selection-start-line="140" selection-start-column="28" selection-end-line="140" selection-end-column="28" />
-          <folding>
-            <element signature="e#6#50#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Properties.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="2250">
@@ -972,8 +962,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/FileParser.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38488576" vertical-offset="3129" max-vertical-offset="4320">
-          <caret line="186" column="5" selection-start-line="186" selection-start-column="5" selection-end-line="186" selection-end-column="5" />
+        <state vertical-scroll-proportion="-5.111111" vertical-offset="1086" max-vertical-offset="4446">
+          <caret line="68" column="67" selection-start-line="68" selection-start-column="67" selection-end-line="68" selection-end-column="67" />
+          <folding>
+            <element signature="e#6#50#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ModuleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.77504396" vertical-offset="1593" max-vertical-offset="2592">
+          <caret line="118" column="36" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
           </folding>

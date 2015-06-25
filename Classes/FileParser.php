@@ -21,12 +21,19 @@ class FileParser
     {
         $categories = [];
         $products = [];
+        $currency = 1;
 
         $reader = new \XMLReader();
         $reader->open($file);
         while ($reader->read()) {
             switch ($reader->nodeType) {
                 case (\XMLReader::ELEMENT):
+                    // parsing <currency> element
+                    if ($reader->localName == 'currency') {
+                        if ($reader->getAttribute('id') === 'USD') {
+                            $currency = (float)$reader->getAttribute('rate');
+                        }
+                    }
                     // parsing <category> element
                     if ($reader->localName == 'category') {
                         $categoryId = $reader->getAttribute("id");
@@ -68,7 +75,7 @@ class FileParser
                                     $warranty = $reader->readString();
                                 }
                                 if($reader->name == 'priceE'){
-                                    $price = $reader->readString();
+                                    $price = $currency * (int)$reader->readString();
                                 }
                                 if($reader->name == 'uid'){
                                     $art = $reader->readString();

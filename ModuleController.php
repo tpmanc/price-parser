@@ -102,7 +102,7 @@ class ModuleController
             echo 'Products insert error: <br />', $res;
         }
 
-        // TODO: property parsing
+        // Properties parsing and saving
         $arr = FileParser::parseProperties(self::$unzippedProperties);
         $properties = $arr['properties'];
         $products = $arr['products'];
