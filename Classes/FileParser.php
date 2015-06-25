@@ -75,7 +75,7 @@ class FileParser
                                     $warranty = $reader->readString();
                                 }
                                 if($reader->name == 'priceE'){
-                                    $price = $currency * (int)$reader->readString();
+                                    $price = $currency * (float)$reader->readString();
                                 }
                                 if($reader->name == 'uid'){
                                     $art = $reader->readString();
