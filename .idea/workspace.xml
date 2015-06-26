@@ -66,8 +66,8 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.074074" vertical-offset="277" max-vertical-offset="846">
-              <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state vertical-scroll-proportion="-14.666667" vertical-offset="252" max-vertical-offset="882">
+              <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -76,8 +76,8 @@
       <file leaf-file-name="ModuleController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ModuleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.0" vertical-offset="1503" max-vertical-offset="2736">
-              <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+            <state vertical-scroll-proportion="-15.740741" vertical-offset="2167" max-vertical-offset="2736">
+              <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
               </folding>
@@ -107,21 +107,21 @@
       <file leaf-file-name="Image.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Classes/Image.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.61870503" vertical-offset="2972" max-vertical-offset="3528">
-              <caret line="146" column="28" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.397482" vertical-offset="229" max-vertical-offset="4014">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="29" selection-end-column="53" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
-                <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-                <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-                <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-                <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-                <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-                <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-                <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-                <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-                <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-                <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-                <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+                <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+                <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+                <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+                <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+                <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+                <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+                <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+                <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+                <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+                <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+                <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
               </folding>
             </state>
           </provider>
@@ -130,7 +130,7 @@
       <file leaf-file-name="Properties.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Classes/Properties.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.666667" vertical-offset="1404" max-vertical-offset="2232">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1404" max-vertical-offset="2232">
               <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
@@ -149,7 +149,7 @@
       <file leaf-file-name="Categories.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Classes/Categories.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-27.25926" vertical-offset="470" max-vertical-offset="1458">
+            <state vertical-scroll-proportion="0.0" vertical-offset="470" max-vertical-offset="1458">
               <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
               <folding>
                 <element signature="e#6#50#0#PHP" expanded="true" />
@@ -176,10 +176,10 @@
         <option value="$PROJECT_DIR$/Classes/FileHelper.php" />
         <option value="$PROJECT_DIR$/Classes/Properties.php" />
         <option value="$PROJECT_DIR$/Classes/FileParser.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/Classes/Products.php" />
-        <option value="$PROJECT_DIR$/Classes/Image.php" />
         <option value="$PROJECT_DIR$/ModuleController.php" />
+        <option value="$PROJECT_DIR$/Classes/Image.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -216,6 +216,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,7 +251,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -360,7 +360,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.249501" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18829009" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19361277" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16566867" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32948717" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -391,7 +391,9 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -453,17 +455,17 @@
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
-            <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-            <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+            <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
           </folding>
         </state>
       </provider>
@@ -556,17 +558,17 @@
           <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
-            <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-            <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+            <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
           </folding>
         </state>
       </provider>
@@ -659,17 +661,17 @@
           <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
-            <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-            <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+            <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
           </folding>
         </state>
       </provider>
@@ -762,17 +764,17 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
-            <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-            <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+            <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
           </folding>
         </state>
       </provider>
@@ -904,7 +906,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Categories.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-27.25926" vertical-offset="470" max-vertical-offset="1458">
+        <state vertical-scroll-proportion="0.0" vertical-offset="470" max-vertical-offset="1458">
           <caret line="67" column="50" selection-start-line="67" selection-start-column="50" selection-end-line="67" selection-end-column="50" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
@@ -917,7 +919,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Properties.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.666667" vertical-offset="1404" max-vertical-offset="2232">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1404" max-vertical-offset="2232">
           <caret line="97" column="22" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
@@ -942,14 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.074074" vertical-offset="277" max-vertical-offset="846">
-          <caret line="38" column="26" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Products.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.4074074" vertical-offset="1334" max-vertical-offset="1890">
@@ -967,10 +961,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.666667" vertical-offset="252" max-vertical-offset="882">
+          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ModuleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.0" vertical-offset="1503" max-vertical-offset="2736">
-          <caret line="105" column="32" selection-start-line="105" selection-start-column="32" selection-end-line="105" selection-end-column="32" />
+        <state vertical-scroll-proportion="-15.740741" vertical-offset="2167" max-vertical-offset="2736">
+          <caret line="149" column="23" selection-start-line="149" selection-start-column="23" selection-end-line="149" selection-end-column="23" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
           </folding>
@@ -979,21 +981,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Classes/Image.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.61870503" vertical-offset="2972" max-vertical-offset="3528">
-          <caret line="146" column="28" selection-start-line="146" selection-start-column="28" selection-end-line="146" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.397482" vertical-offset="229" max-vertical-offset="4014">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="29" selection-end-column="53" />
           <folding>
             <element signature="e#6#50#0#PHP" expanded="true" />
-            <marker date="1435231465663" expanded="true" signature="453:762" placeholder="SELECT cscar..cscart_images_links..." />
-            <marker date="1435231465663" expanded="true" signature="991:1036" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1065" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="991:1068" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="1090:1200" placeholder="DELETE FROM ..." />
-            <marker date="1435231465663" expanded="true" signature="4622:4684" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5122:5131" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5435:5536" placeholder="INSERT INTO ..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5769" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5792" placeholder="SELECT image..cscart_images..." />
-            <marker date="1435231465663" expanded="true" signature="5701:5794" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="451:760" placeholder="SELECT cscar..cscart_images_links..." />
+            <marker date="1435330553403" expanded="true" signature="989:1034" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1063" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="989:1066" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="1088:1198" placeholder="DELETE FROM ..." />
+            <marker date="1435330553403" expanded="true" signature="5028:5090" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5528:5537" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="5841:5942" placeholder="INSERT INTO ..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6175" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6198" placeholder="SELECT image..cscart_images..." />
+            <marker date="1435330553403" expanded="true" signature="6107:6200" placeholder="SELECT image..cscart_images..." />
           </folding>
         </state>
       </provider>

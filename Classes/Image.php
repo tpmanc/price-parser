@@ -14,7 +14,7 @@ class Image
     /**
      * @var string Product images folder
      */
-    private static $imageFolder = '/var/www/sc/images/detailed/1/';
+    private static $imageFolder = '/var/www/sc/images/detailed/';
 
     /**
      * Delete all products images in database and disk
@@ -49,8 +49,9 @@ class Image
         $downloadSuccess = self::downloadImages($images);
         $res1 = self::insertToDb($downloadSuccess);
         $res2 = self::linkWithProducts($downloadSuccess);
+        $res3 = self::replaceImages();
 
-        return $res1 * $res2;
+        return $res1 * $res2 * $res3;
     }
 
     /**
@@ -76,13 +77,15 @@ class Image
         $iterCount = ($imagesCount / $chunkSize) + 1;
         for ($i = 0; $i < $iterCount; $i++) {
             for ($j = 0; $j < $chunkSize; $j++) {
-                curl_setopt($chs[$j], CURLOPT_URL, $images[$lastImgPos]['pictureUrl']);
-                $lastImgPos++;
+                if ($i != $iterCount || isset($images[$lastImgPos])) {
+                    curl_setopt($chs[$j], CURLOPT_URL, $images[$lastImgPos]['pictureUrl']);
+                    $lastImgPos++;
+                }
             }
 
             $downloadSuccess = array_merge($downloadSuccess, self::downloadImagesChunk($mh, $chs));
 
-            if ($i == 1){break;}
+//            if ($i == 1){break;}
         }
 
         foreach ($chs as $ch) {
@@ -102,6 +105,9 @@ class Image
      */
     private static function downloadImagesChunk($mh, array $chs)
     {
+        // картинки сохраняются в папки с названием: целая часть от id картинки / 1000
+        // сначала скачиваем в общую папку, потом из нее уже будем рассовывать по подпапкам. Сейчас мы не можем это сделать,
+        // т.к. еще не известны id картинок из БД
         $downloadSuccess = [];
 
         foreach ($chs as $ch) {
@@ -187,5 +193,26 @@ class Image
         $res = mysql_query($inStr) or die(mysql_error());
 
         return ($res === false) ? false : true;
+    }
+
+    /**
+     * Replace images from general folder to sub folders
+     *
+     * @return boolean
+     */
+    public static function replaceImages()
+    {
+        var_dump('asdsad');
+        // TODO: создавать папки для картинок и перемещать их туда
+        if ($handle = opendir(self::$imageFolder)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    echo "$entry\n";
+                }
+            }
+            closedir($handle);
+        }
+
+        return true;
     }
 }
