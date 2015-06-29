@@ -33,10 +33,10 @@ set_time_limit (0);
 //}
 
 // Clear database
-\ModuleController::clearDatabase();
+// \ModuleController::clearDatabase();
 
 // Fill empty database
-\ModuleController::fillEmptyDatabase();
+// \ModuleController::fillEmptyDatabase();
 
 
 exit();
