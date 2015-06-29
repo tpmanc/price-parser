@@ -34,6 +34,7 @@ class Products
      */
     public static function insertProducts(array $products)
     {
+        // TODO: сохранять остатки товаров, поле count - наличие (* - мало < 10, ** - средне и 3 - много > 20)
         /*
          * cscart_product_descriptions - ($id, "ru", "$title", "", "", "", "", "", "", "", "", "")
          * cscart_product_features_values - непонятно, не заполнял
@@ -67,12 +68,6 @@ class Products
                 $inArr2[] = '(' . $p['id'] . ', ' . $p['price'] . ', 0, 1, 0)';
                 $inArr3[] = '(' . $p['id'] . ', "' . ((int)$p['art'] + $artOffset) . '", "P", "A", 1, 0 , ' .$p['count']. ', ' . $p['weight'] . ', ' . $p['length'] . ', ' . $p['width'] . ', ' . $p['height'] . ', 0, 0, ' . time() . ', ' . time() . ', 0, "N", "N", "N", "B", "N", "N", "R", "Y", "N", "N", "Y", 10, 0, "N", "", 0, 0, 0, 0, 10, "N", 0, "P", "F", "default", "' . $shipping_params . '", "", "", "", "N", "N", "Y", 0, "Y", 0, 0, "", "", "", "", "", "", "")';
                 $inArr4[] = '('.$p['id'].', '.$p['categoryId'].', "M", 0)';
-
-                // TODO: image downloading
-                // if ($p['pictureUrl'] != '') {
-                //     $arr = Image::downloadAndLink($p['pictureUrl'], $p['id'] . '.jpg', $p['id']);
-                //     $inArrImg[] = $arr['link'];
-                // }
             }
         }
         $inStr1 = $inStr1 . implode(',', $inArr1);

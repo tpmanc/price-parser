@@ -17,7 +17,7 @@ class Image
     private static $imageFolder = '/var/www/sc/images/detailed/';
 
     /**
-     * Delete all products images in database and disk
+     * Delete all products images from database and disk
      *
      * @return void
      */
@@ -31,8 +31,9 @@ class Image
                           ');
         $idArr = [];
         while ($r = mysql_fetch_array($q)) {
+            $folderName = floor($r['detailed_id'] / 1000);
             $idArr[] = $r['detailed_id'];
-            unlink(self::$imageFolder . $r['image_path']);
+            unlink(self::$imageFolder . $folderName . $r['image_path']);
         }
         mysql_query('DELETE FROM cscart_images WHERE image_id in (' . implode(',', $idArr) . ')');
         mysql_query('DELETE FROM cscart_images_links WHERE object_type="product" AND  detailed_id in (' . implode(',', $idArr) . ')');
@@ -84,8 +85,6 @@ class Image
             }
 
             $downloadSuccess = array_merge($downloadSuccess, self::downloadImagesChunk($mh, $chs));
-
-//            if ($i == 1){break;}
         }
 
         foreach ($chs as $ch) {
@@ -202,15 +201,26 @@ class Image
      */
     public static function replaceImages()
     {
-        var_dump('asdsad');
+        $pathArr = [];
         // TODO: создавать папки для картинок и перемещать их туда
         if ($handle = opendir(self::$imageFolder)) {
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != "." && $entry != "..") {
-                    echo "$entry\n";
+                    $pathArr[] = '"' . $entry . '"';
                 }
             }
             closedir($handle);
+        }
+
+        if (count($pathArr) > 0) {
+            $q = mysql_query('SELECT * FROM cscart_images WHERE image_path in (' . implode(',', $pathArr) . ')');
+            while ($r = mysql_fetch_array($q)) {
+                $folderName = floor($r['image_id'] / 1000);
+                if (!is_dir(self::$imageFolder . $folderName)) {
+                    mkdir(self::$imageFolder . $folderName);
+                }
+                rename(self::$imageFolder . $r['image_path'], self::$imageFolder . $folderName . '/' .$r['image_path']);
+            }
         }
 
         return true;

@@ -32,7 +32,6 @@ set_time_limit (0);
 //    die('Ошибка при распаковке архивов <br />');
 //}
 
-
 // Clear database
 \ModuleController::clearDatabase();
 
