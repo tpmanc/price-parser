@@ -60,5 +60,5 @@ if ($mode == 'manage') {
         'js' => true
     ));
 
-    Tygh::$app['view']->assign('price_parser', array());
+    Registry::get('view')->assign('price_parser', array());
 }
