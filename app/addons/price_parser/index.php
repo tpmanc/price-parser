@@ -38,6 +38,6 @@ set_time_limit (0);
 // Fill empty database
 // \ModuleController::fillEmptyDatabase();
 
-\ModuleController::updatePrices();
+//\ModuleController::updatePrices();
 
 exit();

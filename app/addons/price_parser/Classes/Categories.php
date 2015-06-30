@@ -15,19 +15,24 @@ class Categories
     /**
      * Delete all records of top menu in database
      *
-     * @return void
+     * @return boolean
      */
     public static function clearCategories()
     {
-        mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
-        mysql_query("TRUNCATE TABLE `cscart_categories`");
-        mysql_query("DELETE FROM cscart_static_data WHERE param_5=2"); // delete top menu from frontend, 2 - menu id if database
+        $res1 = mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
+        $res2 = mysql_query("TRUNCATE TABLE `cscart_categories`");
+        $res3 = mysql_query("DELETE FROM cscart_static_data WHERE param_5=2"); // delete top menu from frontend, 2 - menu id if database
+        if ($res1 === false && $res2 === false && $res3 === false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
      * Insert all categories from input array to database
      * @param array $categories Array with categories info
-     * @return mixed Return true or error
+     * @return boolean
      */
     public static function insertCategories($categories)
     {
@@ -68,9 +73,9 @@ class Categories
         $inStr1 = $inStr1 . implode(',', $inArr1);
         $inStr2 = $inStr2 . implode(',', $inArr2);
 
-        mysql_query($inStr1) or die(mysql_error());
-        mysql_query($inStr2) or die(mysql_error());
+        $res1 = mysql_query($inStr1);
+        $res2 = mysql_query($inStr2);
 
-        return true;
+        return $res1 * $res2;
     }
 }

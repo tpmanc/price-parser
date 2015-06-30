@@ -17,20 +17,25 @@ class Products
     /**
      * Delete all products records in database
      *
-     * @return void
+     * @return boolean
      */
     public static function clearProducts()
     {
-        mysql_query("TRUNCATE TABLE `cscart_product_descriptions`");
-        mysql_query("TRUNCATE TABLE `cscart_product_prices`");
-        mysql_query("TRUNCATE TABLE `cscart_products`");
-        mysql_query("TRUNCATE TABLE `cscart_products_categories`");
+        $res1 = mysql_query("TRUNCATE TABLE `cscart_product_descriptions`");
+        $res2 = mysql_query("TRUNCATE TABLE `cscart_product_prices`");
+        $res3 = mysql_query("TRUNCATE TABLE `cscart_products`");
+        $res4 = mysql_query("TRUNCATE TABLE `cscart_products_categories`");
+        if ($res1 === false && $res2 === false && $res3 === false && $res4 === false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
      * Insert all products from input array to database
      * @param array $products Array with products info
-     * @return mixed Return true or error
+     * @return boolean
      */
     public static function insertProducts(array $products)
     {
@@ -74,12 +79,12 @@ class Products
         $inStr3 = $inStr3 . implode(',', $inArr3);
         $inStr4 = $inStr4 . implode(',', $inArr4);
 
-        mysql_query($inStr1) or die(mysql_error());
-        mysql_query($inStr2) or die(mysql_error());
-        mysql_query($inStr3) or die(mysql_error());
-        mysql_query($inStr4) or die(mysql_error());
+        $res1 = mysql_query($inStr1);
+        $res2 = mysql_query($inStr2);
+        $res3 = mysql_query($inStr3);
+        $res4 = mysql_query($inStr4);
 
-        return true;
+        return $res1 * $res2 * $res3 * $res4;
     }
 
     /**

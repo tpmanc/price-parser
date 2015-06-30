@@ -55,12 +55,13 @@ class ModuleController
 
     /**
      * Downloading price and properties
-     * @return void
+     * @return boolean
      */
     public static function downloadPrices()
     {
-        FileHelper::download(self::$priceUrl, self::$priceZipPath);
-        FileHelper::download(self::$propertiesUrl, self::$propertiesZipPath);
+        $res1 = FileHelper::download(self::$priceUrl, self::$priceZipPath);
+        $res2 = FileHelper::download(self::$propertiesUrl, self::$propertiesZipPath);
+        return $res1 * $res2;
     }
 
     /**
@@ -77,7 +78,7 @@ class ModuleController
 
     /**
      * Insert to empty database categories and products
-     * @return void
+     * @return boolean
      */
     public static function fillEmptyDatabase()
     {
@@ -87,44 +88,26 @@ class ModuleController
         $images = $arr['images'];
 
         // Categories saving
-        $res = Categories::insertCategories($categories);
-        if( $res === true ){
-            echo 'Categories insert complete<br />';
-        }else{
-            echo 'Categories insert error: <br />', $res;
-        }
+        $res1 = Categories::insertCategories($categories);
 
         // Products saving
-        $res = Products::insertProducts($products);
-        if( $res === true ){
-            echo 'Products insert complete<br />';
-        }else{
-            echo 'Products insert error: <br />', $res;
-        }
+        $res2 = Products::insertProducts($products);
 
         // Images saving
-        $res = Image::downloadAndLink($images);
-        if( $res == true ){
-            echo 'Products insert complete<br />';
-        }else{
-            echo 'Products insert error: <br />', $res;
-        }
+        $res3 = Image::downloadAndLink($images);
 
         // Properties parsing and saving
         $arr = FileParser::parseProperties(self::$unzippedProperties);
         $properties = $arr['properties'];
         $products = $arr['products'];
-        $res = Properties::insertProperties($properties);
-        if( $res === true ){
-            echo 'Properties insert complete<br />';
-        }else{
-            echo 'Properties insert error: <br />', $res;
-        }
-        $res = Properties::addPropertyToProduct($products);
-        if( $res === true ){
-            echo 'Properties links insert complete<br />';
-        }else{
-            echo 'Properties links insert error: <br />', $res;
+        $res4 = Properties::insertProperties($properties);
+
+        $res5 = Properties::addPropertyToProduct($products);
+
+        if ($res1 === false && $res2 === false && $res3 === false && $res4 === false && $res5 === false) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -140,14 +123,16 @@ class ModuleController
 
     /**
      * Delete all categories and product from database
-     * @return void
+     * @return boolean
      */
     public static function clearDatabase()
     {
-        Categories::clearCategories();
-        Products::clearProducts();
-        Properties::clearProperties();
-        Image::clearImages();
+        $res1 = Categories::clearCategories();
+        $res2 = Products::clearProducts();
+        $res3 = Properties::clearProperties();
+        $res4 = Image::clearImages();
+
+        return $res1 * $res2 * $res3 * $res4;
     }
 
     /**

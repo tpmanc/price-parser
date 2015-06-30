@@ -37,32 +37,30 @@ class Properties
     /**
      * Delete all properties in database
      *
-     * @return void
+     * @return boolean
      */
     public static function clearProperties()
     {
-        mysql_query("TRUNCATE TABLE `cscart_product_features`");
-        mysql_query("TRUNCATE TABLE `cscart_product_features_descriptions`");
-        mysql_query("TRUNCATE TABLE `cscart_product_feature_variant_descriptions`");
-        mysql_query("TRUNCATE TABLE `cscart_product_features_values`");
-        mysql_query("DELETE FROM cscart_ult_objects_sharing WHERE share_object_type='product_features'");
+        $res1 = mysql_query("TRUNCATE TABLE `cscart_product_features`");
+        $res2 = mysql_query("TRUNCATE TABLE `cscart_product_features_descriptions`");
+        $res3 = mysql_query("TRUNCATE TABLE `cscart_product_feature_variant_descriptions`");
+        $res4 = mysql_query("TRUNCATE TABLE `cscart_product_features_values`");
+        $res5 = mysql_query("DELETE FROM cscart_ult_objects_sharing WHERE share_object_type='product_features'");
+        if ($res1 === false && $res2 === false && $res3 === false && $res4 === false && $res5 === false) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
      * Insert properties from input array to database
      * Using tables: cscart_product_features, cscart_product_features_descriptions
      * @param array $properties Properties array
-     * @return bool
+     * @return boolean
      */
     public static function insertProperties(array $properties)
     {
-        //$cArr = [];
-        //$catQ = mysql_query('SELECT category_id FROM cscart_categories');
-        //while ($r = mysql_fetch_array($catQ)) {
-        //    $cArr[] = $r['category_id'];
-        //}
-        //$categories = implode(',', $cArr);
-
         $inStr1 = 'INSERT INTO cscart_product_features(feature_id, feature_code, company_id, feature_type, categories_path, parent_id, 
                                 display_on_product, display_on_catalog, display_on_header, status, position, comparison) VALUES';
         $inStr2 = 'INSERT INTO cscart_product_features_descriptions(feature_id, description, full_description, prefix, suffix, lang_code) VALUES';
@@ -84,11 +82,11 @@ class Properties
         $inStr2 = $inStr2 . implode(',', $inArr2);
         $inStr3 = $inStr3 . implode(',', $inArr3);
 
-        mysql_query($inStr1) or die('1 ' . mysql_error());
-        mysql_query($inStr2) or die('2 ' . mysql_error());
-        mysql_query($inStr3) or die('3 ' . mysql_error());
+        $res1 = mysql_query($inStr1);
+        $res2 = mysql_query($inStr2);
+        $res3 = mysql_query($inStr3);
 
-        return true;
+        return $res1 * $res2 * $res3;
     }
 
     /**
@@ -111,9 +109,9 @@ class Properties
         }
 
         $inStr .= implode(',', $inArr);
-        mysql_query($inStr) or die(mysql_error());
+        $res1 = mysql_query($inStr);
 
-        return true;
+        return $res1;
     }
 
 }

@@ -19,7 +19,7 @@ class Image
 	/**
 	 * Delete all products images from database and disk
 	 *
-	 * @return void
+	 * @return boolean
 	 */
 	public static function clearImages()
 	{
@@ -42,9 +42,14 @@ class Image
 		}
 
 		// delete from database
-		mysql_query('DELETE FROM cscart_images WHERE image_id in (' . implode(',', $idArr) . ')');
-		mysql_query('DELETE FROM cscart_images_links WHERE object_type="product" AND  detailed_id in (' . implode(',', $idArr) . ')');
-	}
+		$res1 = mysql_query('DELETE FROM cscart_images WHERE image_id in (' . implode(',', $idArr) . ')');
+		$res2 = mysql_query('DELETE FROM cscart_images_links WHERE object_type="product" AND  detailed_id in (' . implode(',', $idArr) . ')');
+        if ($res1 === false && $res2 === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 	/**
 	 * Image downloading and saving to Database

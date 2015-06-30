@@ -26,29 +26,29 @@ require(ADDON_PATH . '/ModuleController.php');
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 function fn_download_price_lists(){
-    \ModuleController::downloadPrices();
+    return \ModuleController::downloadPrices();
 }
 
 function fn_clear_db(){
-    \ModuleController::clearDatabase();
+    return \ModuleController::clearDatabase();
 }
 
 function fn_fill_db(){
-    \ModuleController::fillEmptyDatabase();
+    return \ModuleController::fillEmptyDatabase();
 }
 
 //function fn_update_categories(){
-//    \ModuleController::
+//    return \ModuleController::
 //}
 //
 //function fn_update_products(){
-//    \ModuleController::
+//    return \ModuleController::
 //}
 
 function fn_update_prices(){
-    \ModuleController::updatePrices();
+    return \ModuleController::updatePrices();
 }
 
 function fn_update_amounts(){
-    \ModuleController::updateAmounts();
+    return \ModuleController::updateAmounts();
 }

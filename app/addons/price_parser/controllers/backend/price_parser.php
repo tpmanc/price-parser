@@ -18,12 +18,39 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 $allowMethods = [
     'clearDb' => [
+        'function' => '',
         'success' => 'База данных успешно очищена',
         'error' => 'Ошибка очистке БД'
     ],
     'fillDb' => [
+        'function' => '',
         'success' => 'База данных успешно заполнена',
         'error' => 'Ошибка при заполнении БД'
+    ],
+    'downloadPrices' => [
+        'function' => '',
+        'success' => 'Загрузка прайс листов завершена',
+        'error' => 'Ошибка при загрузке прайст листов'
+    ],
+    'updateCategories' => [
+        'function' => '',
+        'success' => 'Обновление категорий завершено',
+        'error' => 'Ошибка при обновлении категорий'
+    ],
+    'updateProducts' => [
+        'function' => '',
+        'success' => 'Обновление товаров завершено',
+        'error' => 'Ошибка при обновлении товаров'
+    ],
+    'updatePrices' => [
+        'function' => '',
+        'success' => 'Обновление цен завершено',
+        'error' => 'Ошибка при обновлении цен'
+    ],
+    'updateAmounts' => [
+        'function' => '',
+        'success' => 'Обновление остатков завершено',
+        'error' => 'Ошибка при обновлении остатков'
     ],
 ];
 
@@ -34,19 +61,6 @@ if (isset($allowMethods[$method])) {
 } else {
     $method = false;
 }
-
-// if ($_SERVER['REQUEST_METHOD']  == 'POST') {
-
-//     $suffix = '';
-
-//     if ($mode == 'manage') {
-//         fn_set_notification('N', '', 'VCVXVX');
-//         $method = $_REQUEST['method'];
-//         $suffix = ".manage?price_parser=" . $method;
-//     }
-
-//     return array(CONTROLLER_STATUS_OK, 'price_parser' . $suffix);
-// }
 
 if ($mode == 'manage') {
     if ($method !== false) {
