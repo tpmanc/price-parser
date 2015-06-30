@@ -33,11 +33,15 @@ class Image
 		if ($q === false) {
 			return false;
 		}
+		// delete files
 		while ($r = mysql_fetch_array($q)) {
 			$folderName = floor($r['detailed_id'] / 1000);
 			$idArr[] = $r['detailed_id'];
-			unlink(self::$imageFolder . $folderName . $r['image_path']);
+			echo self::$imageFolder . $folderName . '/' . $r['image_path']."\n";
+			unlink(self::$imageFolder . $folderName . '/' . $r['image_path']);
 		}
+
+		// delete from database
 		mysql_query('DELETE FROM cscart_images WHERE image_id in (' . implode(',', $idArr) . ')');
 		mysql_query('DELETE FROM cscart_images_links WHERE object_type="product" AND  detailed_id in (' . implode(',', $idArr) . ')');
 	}
@@ -205,7 +209,6 @@ class Image
 	public static function replaceImages()
 	{
 		$pathArr = [];
-		// TODO: создавать папки для картинок и перемещать их туда
 		if ($handle = opendir(self::$imageFolder)) {
 			while (false !== ($entry = readdir($handle))) {
 				if ($entry != "." && $entry != "..") {
@@ -225,6 +228,8 @@ class Image
 				rename(self::$imageFolder . $r['image_path'], self::$imageFolder . $folderName . '/' .$r['image_path']);
 			}
 		}
+
+		// TODO: удалить неперемещеные файлы
 
 		return true;
 	}
