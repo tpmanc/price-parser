@@ -25,7 +25,7 @@ use Tygh\Languages\Languages;
 use Tygh\BlockManager\Block;
 
 define('ADDON_PATH', __DIR__);
-require(ADDON_PATH . '\ModuleController.php');
+require(ADDON_PATH . '/ModuleController.php');
 
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 

@@ -12,7 +12,7 @@
 * "copyright.txt" FILE PROVIDED WITH THIS DISTRIBUTION PACKAGE.            *
 ****************************************************************************/
 
-$schema['central']['marketing']['items']['price_parser'] = array(
+$schema['central']['website']['items']['price_parser'] = array(
     'attrs' => array(
         'class'=>'is-addon'
     ),
