@@ -54,7 +54,6 @@ class FileParser
                         $warranty = '';
                         $price = '';
                         $art = '';
-                        $pictureUrl = '';
                         $count = 0;
                         $weight = 0;
                         $length = 0;
@@ -91,8 +90,15 @@ class FileParser
                                     }
                                 }
                                 if($reader->name == 'count'){
-                                    if( is_numeric($reader->readString()) ){
-                                        $count = $reader->readString();
+                                    $count = $reader->readString();
+                                    if ($count === '***') {
+                                        $count = 30;
+                                    } elseif ($count === '**') {
+                                        $count = 20;
+                                    } elseif ($count === '*') {
+                                        $count = 10;
+                                    } else {
+                                        $count = 0;
                                     }
                                 }
                                 if($reader->name == 'weight'){
@@ -152,13 +158,14 @@ class FileParser
      * @param string $file Path to file
      * @return array Products arrays
      */
-    public static function parseProductsPrices($file)
+    public static function parseProductsPricesAndAmount($file)
     {
         $products = [];
 
         $reader = new \XMLReader();
         $reader->open($file);
         while ($reader->read()) {
+            $count = 0;
             switch ($reader->nodeType) {
                 case (\XMLReader::ELEMENT):
                     // parsing <offer> element
@@ -175,10 +182,23 @@ class FileParser
                                     $price = $reader->readString();
                                 }
                             }
+                            if($reader->name == 'count'){
+                                $count = $reader->readString();
+                                if ($count === '***') {
+                                    $count = 30;
+                                } elseif ($count === '**') {
+                                    $count = 20;
+                                } elseif ($count === '*') {
+                                    $count = 10;
+                                } else {
+                                    $count = 0;
+                                }
+                            }
                             if ($reader->nodeType == \XMLReader::END_ELEMENT && $reader->localName == 'offer') {
                                 $product = [
                                     'id' => $productId,
                                     'price' => $price,
+                                    'count' => $count,
                                 ];
                                 break;
                             }

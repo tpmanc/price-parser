@@ -34,7 +34,6 @@ class Products
      */
     public static function insertProducts(array $products)
     {
-        // TODO: сохранять остатки товаров, поле count - наличие (* - мало < 10, ** - средне и 3 - много > 20)
         /*
          * cscart_product_descriptions - ($id, "ru", "$title", "", "", "", "", "", "", "", "", "")
          * cscart_product_features_values - непонятно, не заполнял
@@ -86,10 +85,34 @@ class Products
     /**
      * Update products prices from input array
      * @param array $products Array with products prices
-     * @return mixed Return true or error
+     * @return boolean
      */
     public static function updatePrices($products)
     {
-        // TODO: update products prices function
+        $res = true;
+        foreach ($products as $p) {
+            $res = mysql_query('UPDATE cscart_product_prices
+                                SET price='. mysql_real_escape_string($p['price']) .'
+                                WHERE product_id = '.mysql_real_escape_string($p['id']));
+        }
+
+        return ($res === false) ? false : true;
+    }
+
+    /**
+     * Update products amount from input array
+     * @param array $products Array with products amounts
+     * @return boolean
+     */
+    public static function updateAmounts($products)
+    {
+        $res = true;
+        foreach ($products as $p) {
+            $res = mysql_query('UPDATE cscart_products
+                                SET amount='. mysql_real_escape_string($p['count']) .'
+                                WHERE product_id = '.mysql_real_escape_string($p['id']));
+        }
+
+        return ($res === false) ? false : true;
     }
 }

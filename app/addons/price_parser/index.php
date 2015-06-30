@@ -36,7 +36,7 @@ set_time_limit (0);
 // \ModuleController::clearDatabase();
 
 // Fill empty database
-// \ModuleController::fillEmptyDatabase();
+ \ModuleController::fillEmptyDatabase();
 
 
 exit();

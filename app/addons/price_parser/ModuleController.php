@@ -130,12 +130,12 @@ class ModuleController
 
     /**
      * Update products prices
-     * @return void
+     * @return boolean
      */
     public static function updateProductsPrices()
     {
-        $products = FileParser::parseProductsPrices(self::$unzippedPrice);
-        Products::updatePrices($products);
+        $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
+        return Products::updatePrices($products);
     }
 
     /**
@@ -148,5 +148,15 @@ class ModuleController
         Products::clearProducts();
         Properties::clearProperties();
         Image::clearImages();
+    }
+
+    /**
+     * Update products amounts
+     * @return boolean
+     */
+    public static function updateAmounts()
+    {
+        $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
+        return Products::updateAmounts($products);
     }
 }
