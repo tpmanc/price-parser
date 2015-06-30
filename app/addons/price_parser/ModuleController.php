@@ -132,7 +132,7 @@ class ModuleController
      * Update products prices
      * @return boolean
      */
-    public static function updateProductsPrices()
+    public static function updatePrices()
     {
         $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
         return Products::updatePrices($products);

@@ -87,13 +87,15 @@ class Products
      * @param array $products Array with products prices
      * @return boolean
      */
-    public static function updatePrices($products)
+    public static function updatePrices(array $products)
     {
         $res = true;
         foreach ($products as $p) {
-            $res = mysql_query('UPDATE cscart_product_prices
-                                SET price='. mysql_real_escape_string($p['price']) .'
-                                WHERE product_id = '.mysql_real_escape_string($p['id']));
+            if (isset($p['id']) && isset($p['price'])) {
+                $res = mysql_query('UPDATE cscart_product_prices
+                                    SET price='. mysql_real_escape_string($p['price']) .'
+                                    WHERE product_id = '.mysql_real_escape_string($p['id']));
+            }
         }
 
         return ($res === false) ? false : true;
@@ -104,13 +106,15 @@ class Products
      * @param array $products Array with products amounts
      * @return boolean
      */
-    public static function updateAmounts($products)
+    public static function updateAmounts(array $products)
     {
         $res = true;
         foreach ($products as $p) {
-            $res = mysql_query('UPDATE cscart_products
-                                SET amount='. mysql_real_escape_string($p['count']) .'
-                                WHERE product_id = '.mysql_real_escape_string($p['id']));
+            if (isset($p['count']) && isset($p['id'])) {
+                $res = mysql_query('UPDATE cscart_products
+                                    SET amount='. mysql_real_escape_string($p['count']) .'
+                                    WHERE product_id = '.mysql_real_escape_string($p['id']));
+            }
         }
 
         return ($res === false) ? false : true;

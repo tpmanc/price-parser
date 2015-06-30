@@ -161,13 +161,19 @@ class FileParser
     public static function parseProductsPricesAndAmount($file)
     {
         $products = [];
-
+        $currency = 1;
         $reader = new \XMLReader();
         $reader->open($file);
         while ($reader->read()) {
             $count = 0;
             switch ($reader->nodeType) {
                 case (\XMLReader::ELEMENT):
+                    // parsing <currency> element
+                    if ($reader->localName == 'currency') {
+                        if ($reader->getAttribute('id') === 'USD') {
+                            $currency = (float)$reader->getAttribute('rate');
+                        }
+                    }
                     // parsing <offer> element
                     $product = [];
                     if ($reader->localName == 'offer') {
@@ -179,19 +185,19 @@ class FileParser
                         while ($reader->read()){
                             if ($reader->nodeType == \XMLReader::ELEMENT) {
                                 if($reader->name == 'priceE'){
-                                    $price = $reader->readString();
+                                    $price = $currency * (float)$reader->readString();
                                 }
-                            }
-                            if($reader->name == 'count'){
-                                $count = $reader->readString();
-                                if ($count === '***') {
-                                    $count = 30;
-                                } elseif ($count === '**') {
-                                    $count = 20;
-                                } elseif ($count === '*') {
-                                    $count = 10;
-                                } else {
-                                    $count = 0;
+                                if($reader->name == 'count'){
+                                    $count = $reader->readString();
+                                    if ($count === '***') {
+                                        $count = 30;
+                                    } elseif ($count === '**') {
+                                        $count = 20;
+                                    } elseif ($count === '*') {
+                                        $count = 10;
+                                    } else {
+                                        $count = 0;
+                                    }
                                 }
                             }
                             if ($reader->nodeType == \XMLReader::END_ELEMENT && $reader->localName == 'offer') {
