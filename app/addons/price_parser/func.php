@@ -20,15 +20,35 @@ mysql_query("SET NAMES 'utf8';");
 mysql_query("SET CHARACTER SET 'utf8';");
 mysql_query("SET SESSION collation_connection = 'utf8_general_ci';");
 
-use Tygh\Registry;
-use Tygh\Languages\Languages;
-use Tygh\BlockManager\Block;
-
 define('ADDON_PATH', __DIR__);
 require(ADDON_PATH . '/ModuleController.php');
 
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
+function fn_download_price_lists(){
+    \ModuleController::downloadPrices();
+}
+
 function fn_clear_db(){
     \ModuleController::clearDatabase();
+}
+
+function fn_fill_db(){
+    \ModuleController::fillEmptyDatabase();
+}
+
+//function fn_update_categories(){
+//    \ModuleController::
+//}
+//
+//function fn_update_products(){
+//    \ModuleController::
+//}
+
+function fn_update_prices(){
+    \ModuleController::updatePrices();
+}
+
+function fn_update_amounts(){
+    \ModuleController::updateAmounts();
 }

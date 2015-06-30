@@ -88,6 +88,17 @@
 					Обновление цен всех товаров
 				</td>
 			</tr>
+
+            <tr style="border-bottom: 1px solid #D0D0D0;">
+                <td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
+                    <a href="http://test/admin.php?dispatch=price_parser.manage&method=updateAmounts"
+                       onclick="return confirmFunc('Обновить остатки всех товаров?')"
+                       class="btn btn-default">Обновить остатки</a>
+                </td>
+                <td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
+                    Обновление остатков всех товаров
+                </td>
+            </tr>
 		</tbody>
 	</table>
 
