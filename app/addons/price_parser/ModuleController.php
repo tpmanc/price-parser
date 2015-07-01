@@ -72,7 +72,7 @@ class ModuleController
     public static function extract($pathToAddon)
     {
         $price = FileHelper::unzip($pathToAddon . self::$priceZipPath, $pathToAddon . '/temp/');
-        $prop = FileHelper::unzip($pathToAddon . self::$propertiesZipPath, '/temp/');
+        $prop = FileHelper::unzip($pathToAddon . self::$propertiesZipPath, $pathToAddon . '/temp/');
 
         return $price * $prop;
     }
