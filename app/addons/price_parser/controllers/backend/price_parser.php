@@ -18,37 +18,37 @@ if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 $allowMethods = [
     'clearDb' => [
-        'function' => '',
+        'function' => 'fn_clear_db',
         'success' => 'База данных успешно очищена',
         'error' => 'Ошибка очистке БД'
     ],
     'fillDb' => [
-        'function' => '',
+        'function' => 'fn_fill_db',
         'success' => 'База данных успешно заполнена',
         'error' => 'Ошибка при заполнении БД'
     ],
     'downloadPrices' => [
-        'function' => '',
+        'function' => 'fn_download_price_lists',
         'success' => 'Загрузка прайс листов завершена',
         'error' => 'Ошибка при загрузке прайст листов'
     ],
     'updateCategories' => [
-        'function' => '',
+        'function' => 'fn_update_categories',
         'success' => 'Обновление категорий завершено',
         'error' => 'Ошибка при обновлении категорий'
     ],
     'updateProducts' => [
-        'function' => '',
+        'function' => 'fn_update_products',
         'success' => 'Обновление товаров завершено',
         'error' => 'Ошибка при обновлении товаров'
     ],
     'updatePrices' => [
-        'function' => '',
+        'function' => 'fn_update_prices',
         'success' => 'Обновление цен завершено',
         'error' => 'Ошибка при обновлении цен'
     ],
     'updateAmounts' => [
-        'function' => '',
+        'function' => 'fn_update_amounts',
         'success' => 'Обновление остатков завершено',
         'error' => 'Ошибка при обновлении остатков'
     ],
@@ -64,7 +64,11 @@ if (isset($allowMethods[$method])) {
 
 if ($mode == 'manage') {
     if ($method !== false) {
-        fn_set_notification('N', '', $method['success']);
+        if (call_user_func($method['function'])) {
+            fn_set_notification('N', '', $method['success']);
+        } else {
+            fn_set_notification('E', '', $method['error']);
+        }
         $suffix = '.manage';
         return array(CONTROLLER_STATUS_OK, 'price_parser' . $suffix);
     }

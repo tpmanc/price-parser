@@ -122,7 +122,7 @@ class ModuleController
     }
 
     /**
-     * Delete all categories and product from database
+     * Delete all categories, product, images, properties from database
      * @return boolean
      */
     public static function clearDatabase()
@@ -143,5 +143,35 @@ class ModuleController
     {
         $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
         return Products::updateAmounts($products);
+    }
+
+    /**
+     * Update all categories
+     *
+     * Remove all categories from database and insert it from price list
+     * @return boolean
+     */
+    public static function updateCategories()
+    {
+        $res1 = Categories::clearCategories();
+        $categories = FileParser::parseCatsAndProducts(self::$unzippedPrice)['categories'];
+        $res2 = Categories::insertCategories($categories);
+
+        return $res1 * $res2;
+    }
+
+    /**
+     * Update all products properties
+     *
+     * @return boolean
+     */
+    public static function updateProducts()
+    {
+        $res1 = Properties::clearProperties();
+        $arr = FileParser::parseProperties(self::$unzippedProperties);
+        $res2 = Properties::insertProperties($arr['properties']);
+        $res3 = Properties::addPropertyToProduct($arr['products']);
+
+        return $res1 * $res2 * $res3;
     }
 }

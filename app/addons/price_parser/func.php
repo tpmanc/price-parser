@@ -37,13 +37,13 @@ function fn_fill_db(){
     return \ModuleController::fillEmptyDatabase();
 }
 
-//function fn_update_categories(){
-//    return \ModuleController::
-//}
-//
-//function fn_update_products(){
-//    return \ModuleController::
-//}
+function fn_update_categories(){
+    return \ModuleController::updateCategories();
+}
+
+function fn_update_products(){
+    return \ModuleController::updateProducts();
+}
 
 function fn_update_prices(){
     return \ModuleController::updatePrices();

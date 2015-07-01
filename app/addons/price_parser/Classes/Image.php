@@ -211,7 +211,7 @@ class Image
 	 *
 	 * @return boolean
 	 */
-	public static function replaceImages()
+	private static function replaceImages()
 	{
 		$pathArr = [];
 		if ($handle = opendir(self::$imageFolder)) {
@@ -234,8 +234,30 @@ class Image
 			}
 		}
 
-		// TODO: удалить неперемещеные файлы
+		// remove not replaced images
+        self::rmNotReplaceImages();
 
 		return true;
 	}
+
+    /**
+     * Remove not replaced images
+     *
+     * @return boolean
+     */
+    private static function rmNotReplaceImages()
+    {
+        if ($handle = opendir(self::$imageFolder)) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    if (strpos($entry, '.jpg') !== false) {
+                        unlink(self::$imageFolder . $entry);
+                    }
+                }
+            }
+            closedir($handle);
+        }
+
+        return true;
+    }
 }
