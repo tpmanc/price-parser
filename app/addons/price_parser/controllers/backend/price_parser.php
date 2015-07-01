@@ -30,7 +30,7 @@ $allowMethods = [
     'downloadPrices' => [
         'function' => 'fn_download_price_lists',
         'success' => 'Загрузка прайс листов завершена',
-        'error' => 'Ошибка при загрузке прайст листов'
+        'error' => 'Ошибка при загрузке прайст листов. Проверьте права на папку temp/.'
     ],
     'updateCategories' => [
         'function' => 'fn_update_categories',
@@ -64,7 +64,8 @@ if (isset($allowMethods[$method])) {
 
 if ($mode == 'manage') {
     if ($method !== false) {
-        if (call_user_func($method['function'])) {
+
+        if ( $method['function']() ) {
             fn_set_notification('N', '', $method['success']);
         } else {
             fn_set_notification('E', '', $method['error']);

@@ -22,7 +22,6 @@ use \Classes\Properties;
  */
 class ModuleController
 {
-
     /**
      * @var string Url for downloading price
      */
@@ -36,53 +35,56 @@ class ModuleController
     /**
      * @var string Path to download price xml
      */
-    private static $priceZipPath = './temp/price.zip';
+    private static $priceZipPath = '/temp/price.zip';
 
     /**
      * @var string Path to download properties xml
      */
-    private static $propertiesZipPath = './temp/properties.zip';
+    private static $propertiesZipPath = '/temp/properties.zip';
 
     /**
      * @var string Path to unzipped price
      */
-    private static $unzippedPrice = './temp/Price.xml';
+    private static $unzippedPrice = '/temp/Price.xml';
 
     /**
      * @var string Path to unzipped properties
      */
-    private static $unzippedProperties = './temp/GoodsProperties.xml';
+    private static $unzippedProperties = '/temp/GoodsProperties.xml';
 
     /**
      * Downloading price and properties
-     * @return boolean
+     * @param string $pathToAddon Path to addon folder
+     * @return bool
      */
-    public static function downloadPrices()
+    public static function downloadPrices($pathToAddon)
     {
-        $res1 = FileHelper::download(self::$priceUrl, self::$priceZipPath);
-        $res2 = FileHelper::download(self::$propertiesUrl, self::$propertiesZipPath);
+        $res1 = FileHelper::download(self::$priceUrl, $pathToAddon . self::$priceZipPath);
+        $res2 = FileHelper::download(self::$propertiesUrl, $pathToAddon . self::$propertiesZipPath);
         return $res1 * $res2;
     }
 
     /**
      * Extract zip archives
+     * @param string $pathToAddon Path to addon folder
      * @return boolean Boolean result of extracting
      */
-    public static function extract()
+    public static function extract($pathToAddon)
     {
-        $price = FileHelper::unzip(self::$priceZipPath, './temp/');
-        $prop = FileHelper::unzip(self::$propertiesZipPath, './temp/');
+        $price = FileHelper::unzip($pathToAddon . self::$priceZipPath, $pathToAddon . '/temp/');
+        $prop = FileHelper::unzip($pathToAddon . self::$propertiesZipPath, '/temp/');
 
         return $price * $prop;
     }
 
     /**
      * Insert to empty database categories and products
+     * @param string $pathToAddon Path to addon folder
      * @return boolean
      */
-    public static function fillEmptyDatabase()
+    public static function fillEmptyDatabase($pathToAddon)
     {
-        $arr = FileParser::parseCatsAndProducts(self::$unzippedPrice);
+        $arr = FileParser::parseCatsAndProducts($pathToAddon . self::$unzippedPrice);
         $categories = $arr['categories'];
         $products = $arr['products'];
         $images = $arr['images'];
@@ -113,11 +115,12 @@ class ModuleController
 
     /**
      * Update products prices
+     * @param string $pathToAddon Path to addon folder
      * @return boolean
      */
-    public static function updatePrices()
+    public static function updatePrices($pathToAddon)
     {
-        $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
+        $products = FileParser::parseProductsPricesAndAmount($pathToAddon . self::$unzippedPrice);
         return Products::updatePrices($products);
     }
 
@@ -137,11 +140,12 @@ class ModuleController
 
     /**
      * Update products amounts
+     * @param string $pathToAddon Path to addon folder
      * @return boolean
      */
-    public static function updateAmounts()
+    public static function updateAmounts($pathToAddon)
     {
-        $products = FileParser::parseProductsPricesAndAmount(self::$unzippedPrice);
+        $products = FileParser::parseProductsPricesAndAmount($pathToAddon . self::$unzippedPrice);
         return Products::updateAmounts($products);
     }
 
@@ -149,12 +153,13 @@ class ModuleController
      * Update all categories
      *
      * Remove all categories from database and insert it from price list
+     * @param string $pathToAddon Path to addon folder
      * @return boolean
      */
-    public static function updateCategories()
+    public static function updateCategories($pathToAddon)
     {
         $res1 = Categories::clearCategories();
-        $categories = FileParser::parseCatsAndProducts(self::$unzippedPrice)['categories'];
+        $categories = FileParser::parseCatsAndProducts($pathToAddon . self::$unzippedPrice)['categories'];
         $res2 = Categories::insertCategories($categories);
 
         return $res1 * $res2;
@@ -162,13 +167,13 @@ class ModuleController
 
     /**
      * Update all products properties
-     *
+     * @param string $pathToAddon Path to addon folder
      * @return boolean
      */
-    public static function updateProducts()
+    public static function updateProducts($pathToAddon)
     {
         $res1 = Properties::clearProperties();
-        $arr = FileParser::parseProperties(self::$unzippedProperties);
+        $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
         $res2 = Properties::insertProperties($arr['properties']);
         $res3 = Properties::addPropertyToProduct($arr['products']);
 

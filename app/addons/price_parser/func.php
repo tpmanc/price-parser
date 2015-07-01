@@ -13,6 +13,7 @@
 ****************************************************************************/
 
 set_time_limit (0);
+ini_set('memory_limit', -1);
 
 mysql_connect('127.0.0.1', 'root', '');
 mysql_select_db('sc');
@@ -26,7 +27,7 @@ require(ADDON_PATH . '/ModuleController.php');
 if (!defined('BOOTSTRAP')) { die('Access denied'); }
 
 function fn_download_price_lists(){
-    return \ModuleController::downloadPrices();
+    return \ModuleController::downloadPrices(ADDON_PATH);
 }
 
 function fn_clear_db(){
@@ -34,21 +35,21 @@ function fn_clear_db(){
 }
 
 function fn_fill_db(){
-    return \ModuleController::fillEmptyDatabase();
+    return \ModuleController::fillEmptyDatabase(ADDON_PATH);
 }
 
 function fn_update_categories(){
-    return \ModuleController::updateCategories();
+    return \ModuleController::updateCategories(ADDON_PATH);
 }
 
 function fn_update_products(){
-    return \ModuleController::updateProducts();
+    return \ModuleController::updateProducts(ADDON_PATH);
 }
 
 function fn_update_prices(){
-    return \ModuleController::updatePrices();
+    return \ModuleController::updatePrices(ADDON_PATH);
 }
 
 function fn_update_amounts(){
-    return \ModuleController::updateAmounts();
+    return \ModuleController::updateAmounts(ADDON_PATH);
 }

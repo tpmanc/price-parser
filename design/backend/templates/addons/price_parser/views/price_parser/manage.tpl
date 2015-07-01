@@ -74,7 +74,7 @@
 						class="btn btn-default">Обновить товары</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Обновление товаров
+					Обновление характеристик товаров
 				</td>
 			</tr>
 
