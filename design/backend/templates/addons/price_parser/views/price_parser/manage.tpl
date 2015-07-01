@@ -25,7 +25,7 @@
 		<tbody>
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=downloadPrices" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=downloadPrices"
 						onclick="return confirmFunc('Вы действительно хотите обновить прайс листы?')" 
 						class="btn btn-default">Обновить прайс листы</a>
 				</td>
@@ -36,7 +36,7 @@
 
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=clearDb" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=clearDb"
 						onclick="return confirmFunc('Вы действительно хотите очистить БД?')" 
 						class="btn btn-default">Очистить БД</a>
 				</td>
@@ -47,7 +47,7 @@
 
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=fillDb" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=fillDb"
 						onclick="return confirmFunc('Заполнить БД?')" 
 						class="btn btn-default">Заполнить БД</a>
 				</td>
@@ -58,7 +58,7 @@
 
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=updateCategories" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=updateCategories"
 						onclick="return confirmFunc('Обновить категории?')" 
 						class="btn btn-default">Обновить категории</a>
 				</td>
@@ -69,7 +69,7 @@
 
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=updateProducts" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=updateProducts"
 						onclick="return confirmFunc('Обновить товары?')" 
 						class="btn btn-default">Обновить товары</a>
 				</td>
@@ -80,7 +80,7 @@
 
 			<tr style="border-bottom: 1px solid #D0D0D0;">
 				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-					<a href="http://test/admin.php?dispatch=price_parser.manage&method=updatePrices" 
+					<a href="/admin.php?dispatch=price_parser.manage&method=updatePrices"
 						onclick="return confirmFunc('Обновить цены всех товаров?')" 
 						class="btn btn-default">Обновить цены</a>
 				</td>
@@ -91,7 +91,7 @@
 
             <tr style="border-bottom: 1px solid #D0D0D0;">
                 <td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
-                    <a href="http://test/admin.php?dispatch=price_parser.manage&method=updateAmounts"
+                    <a href="/admin.php?dispatch=price_parser.manage&method=updateAmounts"
                        onclick="return confirmFunc('Обновить остатки всех товаров?')"
                        class="btn btn-default">Обновить остатки</a>
                 </td>
