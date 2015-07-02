@@ -109,11 +109,12 @@ class ModuleController
     /**
      * Update products prices
      * @param string $pathToAddon Path to addon folder
+     * @param string|boolean $priceField Product price field name or false
      * @return boolean
      */
-    public static function updatePrices($pathToAddon)
+    public static function updatePrices($pathToAddon, $priceField = false)
     {
-        $products = FileParser::parseProductsPricesAndAmount($pathToAddon . self::$unzippedPrice);
+        $products = FileParser::parseProductsPricesAndAmount($pathToAddon . self::$unzippedPrice, $priceField);
         return Products::updatePrices($products);
     }
 

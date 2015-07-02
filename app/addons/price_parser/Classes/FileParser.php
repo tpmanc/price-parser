@@ -161,11 +161,13 @@ class FileParser
      * @param string $file Path to file
      * @return array Products arrays
      */
-    public static function parseProductsPricesAndAmount($file)
+    public static function parseProductsPricesAndAmount($file, $priceField = false)
     {
         $products = [];
         $currency = 1;
-        $priceField = Registry::get('addons.price_parser.productPriceField');
+        if ($priceField === false) {
+            $priceField = Registry::get('addons.price_parser.productPriceField');
+        }
 
         $reader = new \XMLReader();
         $reader->open($file);
