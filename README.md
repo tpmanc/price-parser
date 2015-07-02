@@ -8,7 +8,9 @@
 
 # 1. Распаковка
 Копировать папки аддона `app/addons/price_parser` и `design/backend/templates/addons/price_parser` 
-в соответствующие папки cms
+в соответствующие папки cms.
+
+Аддон должен иметь права на запись в папки `app/addons/price_parser/temp`, `images/detailed` и всем ее подкатегориям.
 
 # 2. Настройка mysql
 В конфиге mysql прописать
