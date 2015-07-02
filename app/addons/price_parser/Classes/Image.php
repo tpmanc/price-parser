@@ -33,6 +33,11 @@ class Image
 		if ($q === false) {
 			return false;
 		}
+
+		if (empty($idArr)) {
+			return true;
+		}
+		
 		// delete files
 		while ($r = mysql_fetch_array($q)) {
 			$folderName = floor($r['detailed_id'] / 1000);
