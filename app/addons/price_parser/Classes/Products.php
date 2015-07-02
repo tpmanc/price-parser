@@ -124,4 +124,73 @@ class Products
 
         return ($res === false) ? false : true;
     }
+
+    /**
+     * Update products
+     * Delete products that are not in the price list, insert new products
+     * @param array $products Array with products amounts
+     * @param array $images Array with images for products
+     * @return bool
+     */
+    public static function updateProducts(array $products, array $images)
+    {
+        $dbProductsId = []; // storage for id off all products in database
+        $inputProductsId = []; // storage for id off all products in input array
+        $arrForInsert = [];
+        $arrIdForInsert = [];
+        $imagesArr = []; // images that we need to download for new products
+
+        // check for insert products
+        foreach ($products as $p) {
+            if (!empty($p)) {
+                $q = mysql_query('SELECT product_id FROM cscart_products WHERE product_id=' . $p['id']);
+                $r = mysql_result($q, 0);
+                if ($r == null) {
+                    $arrForInsert[] = $p;
+                    $arrIdForInsert[] = $p['id'];
+                }
+                $inputProductsId[] = (int)$p['id'];
+            }
+        }
+        $res1 = true;
+        if (!empty($arrForInsert)) {
+            $res1 = self::insertProducts($arrForInsert);
+            foreach ($images as $i) {
+                if (in_array($i['productId'], $arrIdForInsert)) {
+                    $imagesArr[] = $i;
+                }
+            }
+            if (!empty($imagesArr)) {
+                Image::downloadAndLink($imagesArr);
+            }
+        }
+
+        // check for delete
+        $q = mysql_query('SELECT product_id FROM cscart_products');
+        while ($r = mysql_fetch_array($q)) {
+            $dbProductsId[] = (int)$r['product_id'];
+        }
+        $arrForDelete = array_diff($dbProductsId, $inputProductsId);
+        $res2 = true;
+        $res3 = true;
+        $res4 = true;
+        $res5 = true;
+        $res6 = true;
+        if (!empty($arrForDelete)) {
+            $res2 = mysql_query('DELETE FROM cscart_product_descriptions WHERE product_id in ('.implode(',', $arrForDelete).')');
+            $res3 = mysql_query('DELETE FROM cscart_product_prices WHERE product_id in ('.implode(',', $arrForDelete).')');
+            $res4 = mysql_query('DELETE FROM cscart_products WHERE product_id in ('.implode(',', $arrForDelete).')');
+            $res5 = mysql_query('DELETE FROM cscart_products_categories WHERE product_id in ('.implode(',', $arrForDelete).')');
+            $imgIdArr = [];
+            $q = mysql_query('SELECT detailed_id FROM cscart_images_links WHERE object_type="product" AND object_id in ('.implode(',', $arrForDelete).')');
+            while ($r = mysql_fetch_array($q)) {
+                $imgIdArr[] = $r['detailed_id'];
+            }
+            if (!empty($imgIdArr)) {
+                $res6 = Image::deleteImagesById($imgIdArr);
+            }
+        }
+
+        return $res1 * $res2 * $res3 * $res4 * $res5 * $res6;
+    }
 }

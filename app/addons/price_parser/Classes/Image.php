@@ -37,7 +37,6 @@ class Image
 		while ($r = mysql_fetch_array($q)) {
 			$folderName = floor($r['detailed_id'] / 1000);
 			$idArr[] = $r['detailed_id'];
-			echo self::$imageFolder . $folderName . '/' . $r['image_path']."\n";
 			unlink(self::$imageFolder . $folderName . '/' . $r['image_path']);
 		}
 
@@ -67,6 +66,34 @@ class Image
 		return $res1 * $res2 * $res3;
 	}
 
+    /**
+     * Delete images from DB and disk by array of images id
+     *
+     * @param array $imagesIdArr Array with images id
+     * @return boolean
+     */
+    public static function deleteImagesById(array $imagesIdArr)
+    {
+        $q = mysql_query('SELECT cscart_images_links.detailed_id, cscart_images.image_path
+						  FROM cscart_images_links
+						  LEFT JOIN cscart_images
+							  ON cscart_images.image_id = cscart_images_links.detailed_id
+						  WHERE object_type="product" AND cscart_images_links.detailed_id in ('.implode(',', $imagesIdArr).')
+						  ');
+        if ($q === false) {
+            return false;
+        }
+        while ($r = mysql_fetch_array($q)) {
+            $folderName = floor($r['detailed_id'] / 1000);
+            unlink(self::$imageFolder . $folderName . '/' . $r['image_path']);
+        }
+
+        $res1 = mysql_query('DELETE FROM cscart_images WHERE image_id in ('.implode(',', $imagesIdArr).')');
+        $res2 = mysql_query('DELETE FROM cscart_images_links WHERE detailed_id in ('.implode(',', $imagesIdArr).')');
+
+        return $res1 * $res2;
+    }
+
 	/**
 	 * Split input array for chunks and download each chunk
 	 *
@@ -74,8 +101,14 @@ class Image
 	 * @return array Array with products id of successful downloaded images
 	 */
 	private static function downloadImages(array $images)
-	{
-		$chunkSize = 10;
+    {
+        $needInc = false;
+        if (count($images) > 10) {
+            $chunkSize = 10;
+            $needInc = true;
+        } else {
+            $chunkSize = count($images);
+        }
 		$downloadSuccess = [];
 		$mh = curl_multi_init();
 		$chs = [];
@@ -87,7 +120,10 @@ class Image
 
 		$imagesCount = count($images);
 		$lastImgPos = 0;
-		$iterCount = ($imagesCount / $chunkSize) + 1;
+		$iterCount = ($imagesCount / $chunkSize);
+        if ($needInc) {
+            $iterCount++;
+        }
 		for ($i = 0; $i < $iterCount; $i++) {
 			for ($j = 0; $j < $chunkSize; $j++) {
 				if ($i != $iterCount || isset($images[$lastImgPos])) {
@@ -175,7 +211,7 @@ class Image
 		}
 
 		$inStr = $inStr . implode(',', $inArr);
-		$res = mysql_query($inStr) or die(mysql_error());
+		$res = mysql_query($inStr) or die("img 1: " . mysql_error());
 
 		return ($res === false) ? false : true;
 	}

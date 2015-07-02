@@ -16,6 +16,7 @@ use \Classes\Categories;
 use \Classes\Products;
 use \Classes\Image;
 use \Classes\Properties;
+use Tygh\Registry;
 
 /**
  * Class ModuleController - provides methods to work with prices
@@ -166,11 +167,13 @@ class ModuleController
      */
     public static function updateProducts($pathToAddon)
     {
-        $res1 = Properties::clearProperties();
+        $arr = FileParser::parseCatsAndProducts($pathToAddon . self::$unzippedPrice);
+        $res1 = Products::updateProducts($arr['products'], $arr['images']);
+        $res2 = Properties::clearProperties();
         $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
-        $res2 = Properties::insertProperties($arr['properties']);
-        $res3 = Properties::addPropertyToProduct($arr['products']);
+        $res3 = Properties::insertProperties($arr['properties']);
+        $res4 = Properties::addPropertyToProduct($arr['products']);
 
-        return $res1 * $res2 * $res3;
+        return $res1 * $res2 * $res3 * $res4;
     }
 }
