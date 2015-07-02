@@ -210,8 +210,11 @@ class Image
 			}
 		}
 
-		$inStr = $inStr . implode(',', $inArr);
-		$res = mysql_query($inStr) or die("img 1: " . mysql_error());
+        $res = true;
+        if (!empty($inArr)) {
+            $inStr = $inStr . implode(',', $inArr);
+            $res = mysql_query($inStr);
+        }
 
 		return ($res === false) ? false : true;
 	}
@@ -236,8 +239,11 @@ class Image
 			$inArr[] = '('.$productId.', "product", 0, '.$r['image_id'].', "M", 0)';
 		}
 
-		$inStr = $inStr . implode(',', $inArr);
-		$res = mysql_query($inStr) or die(mysql_error());
+        $res = true;
+        if (!empty($inArr)) {
+            $inStr = $inStr . implode(',', $inArr);
+            $res = mysql_query($inStr);
+        }
 
 		return ($res === false) ? false : true;
 	}
