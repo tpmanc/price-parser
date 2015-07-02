@@ -159,6 +159,7 @@ class FileParser
      * Parse xml with products
      *
      * @param string $file Path to file
+     * @param string|boolean $priceField Product price field name or false
      * @return array Products arrays
      */
     public static function parseProductsPricesAndAmount($file, $priceField = false)
