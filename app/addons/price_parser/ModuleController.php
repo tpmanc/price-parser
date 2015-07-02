@@ -16,7 +16,6 @@ use \Classes\Categories;
 use \Classes\Products;
 use \Classes\Image;
 use \Classes\Properties;
-use Tygh\Registry;
 
 /**
  * Class ModuleController - provides methods to work with prices
