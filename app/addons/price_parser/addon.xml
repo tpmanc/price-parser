@@ -10,6 +10,31 @@
     <default_language>ru</default_language>
     <auto_install>MULTIVENDOR,ULTIMATE</auto_install>
 
+    <settings>
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="productsPriceUrl">
+                        <name>URL до прайса с товарами</name>
+                        <type>input</type>
+                        <default_value>http://www.netlab.ru/products/priceXML.zip</default_value>
+                    </item>
+                    <item id="propertiesPriceUrl">
+                        <name>URL до прайса с товарами</name>
+                        <type>input</type>
+                        <default_value>http://www.netlab.ru/products/GoodsProperties.zip</default_value>
+                    </item>
+                    <item id="productPriceField">
+                        <name>Имя поля с ценой товара</name>
+                        <type>input</type>
+                        <default_value>priceE</default_value>
+                    </item>
+
+                </items>
+            </section>
+        </sections>
+    </settings>
+
     <queries>
         <item for="install">REPLACE INTO ?:language_values (lang_code, name, value) VALUES ('ru', 'price_parser', 'Парсер прайс листов')</item>
         <item for="install">REPLACE INTO ?:language_values (lang_code, name, value) VALUES ('ru', 'price_parser_menu_description', 'Наполнение магазина товарами, обновление цен, ассортимента из прайс листов.')</item>

@@ -5,6 +5,8 @@
 
 namespace Classes;
 
+use Tygh\Registry;
+
 /**
  * Class for parsing files
  * @package Classes
@@ -23,6 +25,7 @@ class FileParser
         $products = [];
         $images = [];
         $currency = 1;
+        $priceField = Registry::get('addons.price_parser.productPriceField');
 
         $reader = new \XMLReader();
         $reader->open($file);
@@ -74,7 +77,7 @@ class FileParser
                                 if($reader->name == 'warranty'){
                                     $warranty = $reader->readString();
                                 }
-                                if($reader->name == 'priceE'){
+                                if($reader->name == $priceField){
                                     $price = $currency * (float)$reader->readString();
                                 }
                                 if($reader->name == 'uid'){
@@ -162,6 +165,8 @@ class FileParser
     {
         $products = [];
         $currency = 1;
+        $priceField = Registry::get('addons.price_parser.productPriceField');
+
         $reader = new \XMLReader();
         $reader->open($file);
         while ($reader->read()) {
@@ -184,7 +189,7 @@ class FileParser
                         // get product properties
                         while ($reader->read()){
                             if ($reader->nodeType == \XMLReader::ELEMENT) {
-                                if($reader->name == 'priceE'){
+                                if($reader->name == $priceField){
                                     $price = $currency * (float)$reader->readString();
                                 }
                                 if($reader->name == 'count'){

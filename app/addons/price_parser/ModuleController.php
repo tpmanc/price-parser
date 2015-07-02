@@ -16,22 +16,13 @@ use \Classes\Categories;
 use \Classes\Products;
 use \Classes\Image;
 use \Classes\Properties;
+use Tygh\Registry;
 
 /**
  * Class ModuleController - provides methods to work with prices
  */
 class ModuleController
 {
-    /**
-     * @var string Url for downloading price
-     */
-    private static $priceUrl = 'http://www.netlab.ru/products/priceXML.zip';
-
-    /**
-     * @var string Url for downloading properties
-     */
-    private static $propertiesUrl = 'http://www.netlab.ru/products/GoodsProperties.zip';
-
     /**
      * @var string Path to download price xml
      */
@@ -59,8 +50,11 @@ class ModuleController
      */
     public static function downloadPrices($pathToAddon)
     {
-        $res1 = FileHelper::download(self::$priceUrl, $pathToAddon . self::$priceZipPath);
-        $res2 = FileHelper::download(self::$propertiesUrl, $pathToAddon . self::$propertiesZipPath);
+        $priceUrl = Registry::get('addons.price_parser.productsPriceUrl');
+        $propertiesUrl = Registry::get('addons.price_parser.propertiesPriceUrl');
+
+        $res1 = FileHelper::download($priceUrl, $pathToAddon . self::$priceZipPath);
+        $res2 = FileHelper::download($propertiesUrl, $pathToAddon . self::$propertiesZipPath);
         return $res1 * $res2;
     }
 
