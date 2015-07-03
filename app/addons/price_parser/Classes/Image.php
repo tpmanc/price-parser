@@ -31,6 +31,11 @@ class Image
 		if ($q === false) {
 			return false;
 		}
+
+		if (empty($idArr)) {
+			return true;
+		}
+		
 		// delete files
         $imageFolder = Settings::get('imageFolder');
 		while ($r = mysql_fetch_array($q)) {
