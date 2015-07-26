@@ -74,7 +74,18 @@
 						class="btn btn-default">Обновить товары</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Обновление характеристик товаров
+					Добавление и удаление товаров
+				</td>
+			</tr>
+
+			<tr style="border-bottom: 1px solid #D0D0D0;">
+				<td style="width: 200px;padding-top: 10px;padding-bottom: 10px;">
+					<a href="/admin.php?dispatch=price_parser.manage&method=updateProperties"
+						onclick="return confirmFunc('Вы действительно хотите обновить прайс листы?')" 
+						class="btn btn-default">Обновить характеристики</a>
+				</td>
+				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
+					Обвновление характеристик товаров
 				</td>
 			</tr>
 

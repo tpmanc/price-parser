@@ -86,7 +86,7 @@ class FileParser
                                 if($reader->name == 'picture'){
                                     $pictureUrl = $reader->readString();
                                     if ($pictureUrl !== '') {
-                                        $images[] = [
+                                        $images[$productId] = [
                                             'productId' => $productId,
                                             'pictureUrl' => $pictureUrl . '&id=' . $productId,
                                         ];

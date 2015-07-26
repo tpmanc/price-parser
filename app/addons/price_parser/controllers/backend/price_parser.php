@@ -10,6 +10,11 @@ $allowMethods = [
         'success' => 'База данных успешно очищена',
         'error' => 'Ошибка очистке БД'
     ],
+    'updateProperties' => [
+        'function' => 'fn_update_properties',
+        'success' => 'Характеристики товаров обновлены',
+        'error' => 'Ошибка при обновлении характеристик'
+    ],
     'fillDb' => [
         'function' => 'fn_fill_db',
         'success' => 'База данных успешно заполнена',

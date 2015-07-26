@@ -1,6 +1,9 @@
 <?php
 
+require('Classes/Settings.php');
+
 use Tygh\Registry;
+use Tygh\Storage;
 
 set_time_limit (0);
 ini_set('memory_limit', -1);
@@ -9,6 +12,9 @@ $dbHost = Registry::get('config.db_host');
 $dbUser = Registry::get('config.db_user');
 $dbPass = Registry::get('config.db_password');
 $dbName = Registry::get('config.db_name');
+
+$imageFolder = Storage::instance('images')->getAbsolutePath('') . 'detailed/';
+\Classes\Settings::set('imageFolder', $imageFolder);
 
 mysql_connect($dbHost, $dbUser, $dbPass);
 mysql_select_db($dbName);
@@ -49,4 +55,8 @@ function fn_update_prices(){
 
 function fn_update_amounts(){
     return \ModuleController::updateAmounts(ADDON_PATH);
+}
+
+function fn_update_properties(){
+    return \ModuleController::updateProperties(ADDON_PATH);
 }

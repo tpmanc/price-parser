@@ -68,23 +68,30 @@ class Properties
         $inArr1 = [];
         $inArr2 = [];
         $inArr3 = [];
+        $num = 0;
         $position = 0;
         foreach ($properties as $p) {
+            $num++;
             $position += 10;
             $id = (int)str_replace('p', '', $p['propertyId']);
             $type = 'T';
             $inArr1[] = '('.$id.', "", 1, "'.$type.'", "", 0, "Y", "Y", "N", "A", '.$position.', "N")';
             $inArr2[] = '('.$id.', "'.mysql_real_escape_string($p['propertyTitle']).'", "", "", "", "ru")';
             $inArr3[] = '(1, '. $id .', "product_features")';
+            if ($num == 2000) {
+                $num = 0;
+                mysql_query($inStr1 . implode(',', $inArr1)) or die(mysql_error() . $inStr1 . implode(',', $inArr1));
+                mysql_query($inStr2 . implode(',', $inArr2)) or die(mysql_error() . $inStr2 . implode(',', $inArr2));
+                mysql_query($inStr3 . implode(',', $inArr3)) or die(mysql_error() . $inStr3 . implode(',', $inArr3));
+                $inArr1 = [];
+                $inArr2 = [];
+                $inArr3 = [];
+            }
         }
 
-        $inStr1 = $inStr1 . implode(',', $inArr1);
-        $inStr2 = $inStr2 . implode(',', $inArr2);
-        $inStr3 = $inStr3 . implode(',', $inArr3);
-
-        $res1 = mysql_query($inStr1);
-        $res2 = mysql_query($inStr2);
-        $res3 = mysql_query($inStr3);
+        $res1 = mysql_query($inStr1 . implode(',', $inArr1));
+        $res2 = mysql_query($inStr2 . implode(',', $inArr2));
+        $res3 = mysql_query($inStr3 . implode(',', $inArr3));
 
         return $res1 * $res2 * $res3;
     }
@@ -97,19 +104,25 @@ class Properties
      */
     public static function addPropertyToProduct(array $products)
     {
-        $inStr = 'INSERT INTO cscart_product_features_values(feature_id, product_id, variant_id, value, value_int, lang_code) VALUES';
+        echo count($products);
+        $inStr = 'REPLACE INTO cscart_product_features_values(feature_id, product_id, variant_id, value, value_int, lang_code) VALUES';
         $inArr = [];
+        $num = 0;
         foreach ($products as $p) {
             if (is_array($p['productProperties']) && !empty($p['productProperties'])) {
                 foreach ($p['productProperties'] as $prop) {
                     $propertyId = (int)str_replace('p', '', $prop['propertyId']);
                     $inArr[] = '('. $propertyId .', '. $p['productId'] .', 0, "'. mysql_real_escape_string($prop['propertyValue']) .'", null, "ru")';
+                    $num++;
+                    if ($num == 2000) {
+                        $num = 0;
+                        mysql_query($inStr . implode(',', $inArr)) or die('1. '.mysql_error() . $inStr . implode(',', $inArr));
+                        $inArr = [];
+                    }
                 }
             }
         }
-
-        $inStr .= implode(',', $inArr);
-        $res1 = mysql_query($inStr);
+        $res1 = mysql_query($inStr . implode(',', $inArr)) or die(mysql_error() . $inStr . implode(',', $inArr));
 
         return $res1;
     }

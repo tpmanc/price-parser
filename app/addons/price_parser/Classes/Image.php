@@ -5,17 +5,15 @@
 
 namespace Classes;
 
+use Classes\Settings;
+
+
 /**
  * Class for working with products images
  * @package Classes
  */
 class Image
 {
-	/**
-	 * @var string Product images folder
-	 */
-	private static $imageFolder = '/var/www/sc/images/detailed/';
-
 	/**
 	 * Delete all products images from database and disk
 	 *
@@ -39,10 +37,11 @@ class Image
 		}
 		
 		// delete files
+        $imageFolder = Settings::get('imageFolder');
 		while ($r = mysql_fetch_array($q)) {
 			$folderName = floor($r['detailed_id'] / 1000);
 			$idArr[] = $r['detailed_id'];
-			unlink(self::$imageFolder . $folderName . '/' . $r['image_path']);
+			unlink($imageFolder . $folderName . '/' . $r['image_path']);
 		}
 
 		// delete from database
@@ -88,9 +87,10 @@ class Image
         if ($q === false) {
             return false;
         }
+        $imageFolder = Settings::get('imageFolder');
         while ($r = mysql_fetch_array($q)) {
             $folderName = floor($r['detailed_id'] / 1000);
-            unlink(self::$imageFolder . $folderName . '/' . $r['image_path']);
+            unlink($imageFolder . $folderName . '/' . $r['image_path']);
         }
 
         $res1 = mysql_query('DELETE FROM cscart_images WHERE image_id in ('.implode(',', $imagesIdArr).')');
@@ -161,6 +161,7 @@ class Image
 		// сначала скачиваем в общую папку, потом из нее уже будем рассовывать по подпапкам. Сейчас мы не можем это сделать,
 		// т.к. еще не известны id картинок из БД
 		$downloadSuccess = [];
+        $imageFolder = Settings::get('imageFolder');
 
 		foreach ($chs as $ch) {
 			curl_multi_add_handle($mh, $ch);
@@ -178,7 +179,7 @@ class Image
 					if (!$info['result']) {
 						$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
 						$productId = mb_strcut($url, strpos($url, '&id=') + 4);
-						$fp = fopen(self::$imageFolder . $productId . '.jpg', 'w+');
+						$fp = fopen($imageFolder . $productId . '.jpg', 'w+');
 						fwrite($fp, $content);
 						fclose($fp);
 						$downloadSuccess[] = $productId;
@@ -206,8 +207,9 @@ class Image
 	{
 		$inStr = 'INSERT INTO cscart_images(image_path, image_x, image_y) VALUES ';
 		$inArr = [];
+        $imageFolder = Settings::get('imageFolder');
 		foreach ($imagesNames as $i) {
-			$size = getimagesize(self::$imageFolder . $i . '.jpg');
+			$size = getimagesize($imageFolder . $i . '.jpg');
 			if ($size !== false) {
 				$width = $size[0];
 				$height= $size[1];
@@ -261,7 +263,8 @@ class Image
 	private static function replaceImages()
 	{
 		$pathArr = [];
-		if ($handle = opendir(self::$imageFolder)) {
+        $imageFolder = Settings::get('imageFolder');
+		if ($handle = opendir($imageFolder)) {
 			while (false !== ($entry = readdir($handle))) {
 				if ($entry != "." && $entry != "..") {
 					$pathArr[] = '"' . $entry . '"';
@@ -274,10 +277,10 @@ class Image
 			$q = mysql_query('SELECT * FROM cscart_images WHERE image_path in (' . implode(',', $pathArr) . ')');
 			while ($r = mysql_fetch_array($q)) {
 				$folderName = floor($r['image_id'] / 1000);
-				if (!is_dir(self::$imageFolder . $folderName)) {
-					mkdir(self::$imageFolder . $folderName);
+				if (!is_dir($imageFolder . $folderName)) {
+					mkdir($imageFolder . $folderName);
 				}
-				rename(self::$imageFolder . $r['image_path'], self::$imageFolder . $folderName . '/' .$r['image_path']);
+				rename($imageFolder . $r['image_path'], $imageFolder . $folderName . '/' .$r['image_path']);
 			}
 		}
 
@@ -294,11 +297,12 @@ class Image
      */
     private static function rmNotReplaceImages()
     {
-        if ($handle = opendir(self::$imageFolder)) {
+        $imageFolder = Settings::get('imageFolder');
+        if ($handle = opendir($imageFolder)) {
             while (false !== ($entry = readdir($handle))) {
                 if ($entry != "." && $entry != "..") {
                     if (strpos($entry, '.jpg') !== false) {
-                        unlink(self::$imageFolder . $entry);
+                        unlink($imageFolder . $entry);
                     }
                 }
             }

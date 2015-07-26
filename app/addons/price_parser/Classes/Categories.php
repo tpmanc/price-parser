@@ -45,8 +45,8 @@ class Categories
          * cscart_static_data - ($param_id, "", "", !, "", 2, "ty-menu-item__products", "A", "A", $position, $parent_id, $id_path, "", 1)
          * cscart_static_data_descriptions - ($param_id, "ru", "$title")
          */
-        $inStr1 = "INSERT INTO cscart_category_descriptions(category_id, lang_code, category, description, meta_keywords, meta_description, page_title, age_warning_message) VALUES";
-        $inStr2 = "INSERT INTO cscart_categories(category_id, parent_id, id_path, level, company_id, usergroup_ids, status, product_count, position, timestamp, is_op, localization, age_verification, age_limit, parent_age_verification, parent_age_limit, selected_views, default_view, product_details_view, product_columns, yml_market_category, yml_disable_cat) VALUES";
+        $inStr1 = "REPLACE INTO cscart_category_descriptions(category_id, lang_code, category, description, meta_keywords, meta_description, page_title, age_warning_message) VALUES";
+        $inStr2 = "REPLACE INTO cscart_categories(category_id, parent_id, id_path, level, company_id, usergroup_ids, status, product_count, position, timestamp, is_op, localization, age_verification, age_limit, parent_age_verification, parent_age_limit, selected_views, default_view, product_details_view, product_columns, yml_market_category, yml_disable_cat) VALUES";
         $inArr1 = [];
         $inArr2 = [];
         $position = 0;

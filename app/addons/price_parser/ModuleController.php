@@ -82,7 +82,8 @@ class ModuleController
         $categories = $arr['categories'];
         $products = $arr['products'];
         $images = $arr['images'];
-
+        var_dump($images);die();
+        
         // Categories saving
         $res1 = Categories::insertCategories($categories);
 
@@ -93,9 +94,11 @@ class ModuleController
         $res3 = Image::downloadAndLink($images);
 
         // Properties parsing and saving
-        $arr = FileParser::parseProperties(self::$unzippedProperties);
+        $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
+
         $properties = $arr['properties'];
         $products = $arr['products'];
+        
         $res4 = Properties::insertProperties($properties);
 
         $res5 = Properties::addPropertyToProduct($products);
@@ -169,11 +172,22 @@ class ModuleController
     {
         $arr = FileParser::parseCatsAndProducts($pathToAddon . self::$unzippedPrice);
         $res1 = Products::updateProducts($arr['products'], $arr['images']);
+        
+        // $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
+        // $res3 = Properties::insertProperties($arr['properties']);
+        // $res4 = Properties::addPropertyToProduct($arr['products']);
+
+        // return $res1 * $res2 * $res3 * $res4;
+        return $res1;
+    }
+
+    public static function updateProperties($pathToAddon)
+    {
         $res2 = Properties::clearProperties();
         $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
         $res3 = Properties::insertProperties($arr['properties']);
         $res4 = Properties::addPropertyToProduct($arr['products']);
 
-        return $res1 * $res2 * $res3 * $res4;
+        return $res4;
     }
 }
