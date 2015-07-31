@@ -29,6 +29,16 @@
                         <type>input</type>
                         <default_value>priceE</default_value>
                     </item>
+                    <item id="imageCode">
+                        <name>Код для загрузки картинок</name>
+                        <type>input</type>
+                        <default_value></default_value>
+                    </item>
+                    <item id="excludeCategories">
+                        <name>Названия категорий, которые не надо удалять (перечислить через зарятую)</name>
+                        <type>textarea</type>
+                        <default_value></default_value>
+                    </item>
 
                 </items>
             </section>

@@ -26,6 +26,7 @@ class FileParser
         $images = [];
         $currency = 1;
         $priceField = Registry::get('addons.price_parser.productPriceField');
+        $imgCode = Registry::get('addons.price_parser.imageCode');
 
         $reader = new \XMLReader();
         $reader->open($file);
@@ -84,7 +85,7 @@ class FileParser
                                     $art = $reader->readString();
                                 }
                                 if($reader->name == 'picture'){
-                                    $pictureUrl = $reader->readString();
+                                    $pictureUrl = str_replace('&amp;0', '&' . $imgCode, $reader->readString());
                                     if ($pictureUrl !== '') {
                                         $images[$productId] = [
                                             'productId' => $productId,

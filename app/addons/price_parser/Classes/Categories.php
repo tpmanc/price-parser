@@ -19,9 +19,26 @@ class Categories
      */
     public static function clearCategories()
     {
-        $res1 = mysql_query("TRUNCATE TABLE `cscart_category_descriptions`");
-        $res2 = mysql_query("TRUNCATE TABLE `cscart_categories`");
-        $res3 = mysql_query("DELETE FROM cscart_static_data WHERE param_5=2"); // delete top menu from frontend, 2 - menu id if database
+        $exclude = Registry::get('addons.price_parser.imageCode');
+        $exclude = str_replace(' ', '', $exclude);
+        $excludeArr = explode(',', $exclude);
+        $inArr = [];
+        foreach ($excludeArr as $e) {
+            $inArr[] = '"' . $e . '"';
+        }
+
+        $idArr = [];
+        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE title in (' . implode(',', $inArr) . ')');
+        if ($q !== false) {
+            while ($r = mysql_fetch_array($q)) {
+                $idArr[] = $r['category_id'];
+            }
+        }
+
+
+        $res1 = mysql_query("DELETE FROM `cscart_category_descriptions` WHERE category_id NOT IN (" . implode(',', $idArr) . ")");
+        $res2 = mysql_query("DELETE FROM `cscart_categories` WHERE category_id NOT IN (" . implode(',', $idArr) . ")");
+        // $res3 = mysql_query("DELETE FROM cscart_static_data WHERE param_5=2"); // delete top menu from frontend, 2 - menu id if database
         if ($res1 === false && $res2 === false && $res3 === false) {
             return false;
         } else {
