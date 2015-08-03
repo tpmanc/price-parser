@@ -5,6 +5,8 @@
 
 namespace Classes;
 
+use Tygh\Registry;
+
 /**
  * Class to work with categories
  * @package Classes
