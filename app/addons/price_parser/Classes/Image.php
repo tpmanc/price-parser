@@ -2,11 +2,9 @@
 /**
  * @author tpmanc <tpxtrime@mail.ru>
  */
-
 namespace Classes;
 
 use Classes\Settings;
-
 
 /**
  * Class for working with products images
@@ -107,99 +105,28 @@ class Image
 	 */
 	private static function downloadImages(array $images)
     {
+        $imageFolder = Settings::get('imageFolder');
         $downloadSuccess = [];
+
+        $rollingCurl = new \RollingCurl();
+
+        $num = 0;
         foreach ($images as $i) {
-            $con = file_get_contents($i['pictureUrl']);
-            file_put_contents('C:\OpenServer/domains/test/images/detailed/'.$i['productId'].'.jpg', $con);
-            $downloadSuccess[] = $i['productId'];
+            $num++;
+            if ($num === 100) {
+                break;
+            }
+            $rollingCurl->get($i['pictureUrl']);
         }
 
-  //       $needInc = false;
-  //       if (count($images) > 10) {
-  //           $chunkSize = 10;
-  //           $needInc = true;
-  //       } else {
-  //           $chunkSize = count($images);
-  //       }
-		// $downloadSuccess = [];
-		// $mh = curl_multi_init();
-		// $chs = [];
-		// for ($i = 0; $i < $chunkSize; $i++) {
-		// 	$chs[] = ($ch = curl_init());
-		// 	curl_setopt($ch, CURLOPT_HEADER, 0);
-		// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		// }
-
-		// $imagesCount = count($images);
-		// $lastImgPos = 0;
-		// $iterCount = ($imagesCount / $chunkSize);
-  //       if ($needInc) {
-  //           $iterCount++;
-  //       }
-		// for ($i = 0; $i < $iterCount; $i++) {
-		// 	for ($j = 0; $j < $chunkSize; $j++) {
-		// 		if ($i != $iterCount || isset($images[$lastImgPos])) {
-		// 			curl_setopt($chs[$j], CURLOPT_URL, $images[$lastImgPos]['pictureUrl']);
-		// 			$lastImgPos++;
-		// 		}
-		// 	}
-
-		// 	$downloadSuccess = array_merge($downloadSuccess, self::downloadImagesChunk($mh, $chs));
-		// }
-
-		// foreach ($chs as $ch) {
-		// 	curl_close($ch);
-		// }
-		// curl_multi_close($mh);
-
-		// return $downloadSuccess;
-	}
-
-	/**
-	 * Downloading chunk of image array
-	 *
-	 * @param resource $mh Multi curl resource
-	 * @param array $chs Array of curl resources
-	 * @return array Array of product id for successful downloaded images
-	 */
-	private static function downloadImagesChunk($mh, array $chs)
-	{
-		// картинки сохраняются в папки с названием: целая часть от id картинки / 1000
-		// сначала скачиваем в общую папку, потом из нее уже будем рассовывать по подпапкам. Сейчас мы не можем это сделать,
-		// т.к. еще не известны id картинок из БД
-		$downloadSuccess = [];
-        $imageFolder = Settings::get('imageFolder');
-
-		foreach ($chs as $ch) {
-			curl_multi_add_handle($mh, $ch);
-		}
-
-		$prev_running = $running = null;
-		// downloading
-		do {
-			curl_multi_exec($mh, $running);
-			if ($running != $prev_running) {
-				$info = curl_multi_info_read($mh);
-				if (is_array($info) && ($ch = $info['handle'])) {
-					// получаю содержимое загруженной страницы
-					$content = curl_multi_getcontent($ch);
-					if (!$info['result']) {
-						$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-						$productId = mb_strcut($url, strpos($url, '&id=') + 4);
-						$fp = fopen($imageFolder . $productId . '.jpg', 'w+');
-						fwrite($fp, $content);
-						fclose($fp);
-						$downloadSuccess[] = $productId;
-					}
-				}
-
-				$prev_running = $running;
-			}
-		} while ($running > 0);
-
-		foreach ($chs as $ch) {
-			curl_multi_remove_handle($mh, $ch);
-		}
+        $rollingCurl
+            ->setCallback(function(\Request $request, \RollingCurl $rollingCurl) {
+                $productId = mb_strcut($request->getUrl(), strpos($request->getUrl(), '#') + 1);
+                file_put_contents($imageFolder . $productId.'.jpg', $request->getResponseText());
+                $downloadSuccess[] = $productId;
+            })
+            ->setSimultaneousLimit(10)
+            ->execute();
 
 		return $downloadSuccess;
 	}
