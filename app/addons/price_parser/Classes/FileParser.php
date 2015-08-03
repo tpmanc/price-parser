@@ -85,11 +85,11 @@ class FileParser
                                     $art = $reader->readString();
                                 }
                                 if($reader->name == 'picture'){
-                                    $pictureUrl = str_replace('&amp;0', '&' . $imgCode, $reader->readString());
+                                    $pictureUrl = str_replace('&0', '&' . $imgCode, $reader->readString());
                                     if ($pictureUrl !== '') {
                                         $images[$productId] = [
                                             'productId' => $productId,
-                                            'pictureUrl' => $pictureUrl . '&id=' . $productId,
+                                            'pictureUrl' => $pictureUrl . '#' . $productId,
                                         ];
                                     }
                                 }

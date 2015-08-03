@@ -107,45 +107,52 @@ class Image
 	 */
 	private static function downloadImages(array $images)
     {
-        $needInc = false;
-        if (count($images) > 10) {
-            $chunkSize = 10;
-            $needInc = true;
-        } else {
-            $chunkSize = count($images);
+        $downloadSuccess = [];
+        foreach ($images as $i) {
+            $con = file_get_contents($i['pictureUrl']);
+            file_put_contents('C:\OpenServer/domains/test/images/detailed/'.$i['productId'].'.jpg', $con);
+            $downloadSuccess[] = $i['productId'];
         }
-		$downloadSuccess = [];
-		$mh = curl_multi_init();
-		$chs = [];
-		for ($i = 0; $i < $chunkSize; $i++) {
-			$chs[] = ($ch = curl_init());
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		}
 
-		$imagesCount = count($images);
-		$lastImgPos = 0;
-		$iterCount = ($imagesCount / $chunkSize);
-        if ($needInc) {
-            $iterCount++;
-        }
-		for ($i = 0; $i < $iterCount; $i++) {
-			for ($j = 0; $j < $chunkSize; $j++) {
-				if ($i != $iterCount || isset($images[$lastImgPos])) {
-					curl_setopt($chs[$j], CURLOPT_URL, $images[$lastImgPos]['pictureUrl']);
-					$lastImgPos++;
-				}
-			}
+  //       $needInc = false;
+  //       if (count($images) > 10) {
+  //           $chunkSize = 10;
+  //           $needInc = true;
+  //       } else {
+  //           $chunkSize = count($images);
+  //       }
+		// $downloadSuccess = [];
+		// $mh = curl_multi_init();
+		// $chs = [];
+		// for ($i = 0; $i < $chunkSize; $i++) {
+		// 	$chs[] = ($ch = curl_init());
+		// 	curl_setopt($ch, CURLOPT_HEADER, 0);
+		// 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// }
 
-			$downloadSuccess = array_merge($downloadSuccess, self::downloadImagesChunk($mh, $chs));
-		}
+		// $imagesCount = count($images);
+		// $lastImgPos = 0;
+		// $iterCount = ($imagesCount / $chunkSize);
+  //       if ($needInc) {
+  //           $iterCount++;
+  //       }
+		// for ($i = 0; $i < $iterCount; $i++) {
+		// 	for ($j = 0; $j < $chunkSize; $j++) {
+		// 		if ($i != $iterCount || isset($images[$lastImgPos])) {
+		// 			curl_setopt($chs[$j], CURLOPT_URL, $images[$lastImgPos]['pictureUrl']);
+		// 			$lastImgPos++;
+		// 		}
+		// 	}
 
-		foreach ($chs as $ch) {
-			curl_close($ch);
-		}
-		curl_multi_close($mh);
+		// 	$downloadSuccess = array_merge($downloadSuccess, self::downloadImagesChunk($mh, $chs));
+		// }
 
-		return $downloadSuccess;
+		// foreach ($chs as $ch) {
+		// 	curl_close($ch);
+		// }
+		// curl_multi_close($mh);
+
+		// return $downloadSuccess;
 	}
 
 	/**
