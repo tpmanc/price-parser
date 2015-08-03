@@ -82,7 +82,6 @@ class ModuleController
         $categories = $arr['categories'];
         $products = $arr['products'];
         $images = $arr['images'];
-        var_dump($images);die();
         
         // Categories saving
         $res1 = Categories::insertCategories($categories);
