@@ -138,7 +138,23 @@ class Categories
         while ($r = mysql_fetch_array($q)) {
             $dbCategoriesId[] = (int)$r['category_id'];
         }
-        $arrForDelete = array_diff($dbCategoriesId, $inputCategoriesId);
+
+        $exclude = Registry::get('addons.price_parser.imageCode');
+        $exclude = str_replace(' ', '', $exclude);
+        $excludeArr = explode(',', $exclude);
+        $inArr = [];
+        foreach ($excludeArr as $e) {
+            $inArr[] = '"' . $e . '"';
+        }
+        $idArr = []; // exclude
+        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE title in (' . implode(',', $inArr) . ')');
+        if ($q !== false) {
+            while ($r = mysql_fetch_array($q)) {
+                $idArr[] = $r['category_id'];
+            }
+        }
+        $arrForDelete = array_diff($dbCategoriesId, $inputCategoriesId, $idArr);
+
         $res2 = true;
         $res3 = true;
         if (!empty($arrForDelete)) {
