@@ -97,4 +97,55 @@ class Categories
 
         return $res1 * $res2;
     }
+
+    /**
+     * Update categories
+     * Delete categories that are not in the price list, insert new categories
+     * @param array $categories Array with categories amounts
+     * @param array $images Array with images for categories
+     * @return bool
+     */
+    public static function updateCategories(array $categories)
+    {
+        $dbCategoriesId = []; // storage for id off all categories in database
+        $inputCategoriesId = []; // storage for id off all categories in input array
+        $arrForInsert = [];
+        $arrIdForInsert = [];
+
+        // check for insert categories
+        foreach ($categories as $p) {
+            if (!empty($p)) {
+                $q = mysql_query('SELECT category_id FROM cscart_categories WHERE category_id=' . $p['id']);
+                if ($q !== false && $q !== null) {
+                    $r = mysql_result($q, 0);
+                    if ($r == null) {
+                        $arrForInsert[] = $p;
+                        $arrIdForInsert[] = $p['id'];
+                    }
+                    $inputCategoriesId[] = (int)$p['id'];
+                } else {
+                    $inputCategoriesId[] = (int)$p['id'];
+                }
+            }
+        }
+        $res1 = true;
+        if (!empty($arrForInsert)) {
+            $res1 = self::insertCategories($arrForInsert);
+        }
+
+        // check for delete
+        $q = mysql_query('SELECT category_id FROM cscart_categories');
+        while ($r = mysql_fetch_array($q)) {
+            $dbCategoriesId[] = (int)$r['category_id'];
+        }
+        $arrForDelete = array_diff($dbCategoriesId, $inputCategoriesId);
+        $res2 = true;
+        $res3 = true;
+        if (!empty($arrForDelete)) {
+            $res2 = mysql_query('DELETE FROM cscart_categories WHERE category_id in ('.implode(',', $arrForDelete).')');
+            $res3 = mysql_query('DELETE FROM cscart_category_descriptions WHERE category_id in ('.implode(',', $arrForDelete).')');
+        }
+
+        return $res1 * $res2 * $res3;
+    }
 }

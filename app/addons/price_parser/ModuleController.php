@@ -157,11 +157,10 @@ class ModuleController
      */
     public static function updateCategories($pathToAddon)
     {
-        $res1 = Categories::clearCategories();
         $categories = FileParser::parseCatsAndProducts($pathToAddon . self::$unzippedPrice)['categories'];
-        $res2 = Categories::insertCategories($categories);
+        $res2 = Categories::updateCategories($categories);
 
-        return $res1 * $res2;
+        return $res2;
     }
 
     /**
