@@ -86,23 +86,23 @@ class ModuleController
         $images = $arr['images'];
         
         // Categories saving
-        // $res1 = Categories::insertCategories($categories);
+        $res1 = Categories::insertCategories($categories);
 
         // Products saving
-        // $res2 = Products::insertProducts($products);
+        $res2 = Products::insertProducts($products);
 
         // Images saving
         $res3 = Image::downloadAndLink($images);
 
         // Properties parsing and saving
-        // $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
+        $arr = FileParser::parseProperties($pathToAddon . self::$unzippedProperties);
 
-        // $properties = $arr['properties'];
-        // $products = $arr['products'];
+        $properties = $arr['properties'];
+        $products = $arr['products'];
         
-        // $res4 = Properties::insertProperties($properties);
+        $res4 = Properties::insertProperties($properties);
 
-        // $res5 = Properties::addPropertyToProduct($products);
+        $res5 = Properties::addPropertyToProduct($products);
 
         if ($res1 === false && $res2 === false && $res3 === false && $res4 === false && $res5 === false) {
             return false;

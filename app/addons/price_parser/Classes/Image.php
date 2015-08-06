@@ -110,17 +110,12 @@ class Image
 
         $rollingCurl = new \RollingCurl();
 
-        $num = 0;
         foreach ($images as $i) {
-            $num++;
-            if ($num === 100) {
-                break;
-            }
             $rollingCurl->get($i['pictureUrl']);
         }
 
         $rollingCurl
-            ->setCallback(function(\Request $request, \RollingCurl $rollingCurl) {
+            ->setCallback(function(\Request $request, \RollingCurl $rollingCurl)  use (&$imageFolder) {
                 $productId = mb_strcut($request->getUrl(), strpos($request->getUrl(), '#') + 1);
                 file_put_contents($imageFolder . $productId.'.jpg', $request->getResponseText());
                 $downloadSuccess[] = $productId;
