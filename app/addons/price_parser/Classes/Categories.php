@@ -21,7 +21,7 @@ class Categories
      */
     public static function clearCategories()
     {
-        $exclude = Registry::get('addons.price_parser.imageCode');
+        $exclude = Registry::get('addons.price_parser.excludeCategories');
         $exclude = str_replace(' ', '', $exclude);
         $excludeArr = explode(',', $exclude);
         $inArr = [];
@@ -30,7 +30,7 @@ class Categories
         }
 
         $idArr = [];
-        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE title in (' . implode(',', $inArr) . ')');
+        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE category in (' . implode(',', $inArr) . ')');
         if ($q !== false) {
             while ($r = mysql_fetch_array($q)) {
                 $idArr[] = $r['category_id'];
@@ -139,21 +139,24 @@ class Categories
             $dbCategoriesId[] = (int)$r['category_id'];
         }
 
-        $exclude = Registry::get('addons.price_parser.imageCode');
+        $exclude = Registry::get('addons.price_parser.excludeCategories');
         $exclude = str_replace(' ', '', $exclude);
         $excludeArr = explode(',', $exclude);
         $inArr = [];
+        var_dump($excludeArr);
         foreach ($excludeArr as $e) {
             $inArr[] = '"' . $e . '"';
         }
         $idArr = []; // exclude
-        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE title in (' . implode(',', $inArr) . ')');
+        $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE category in (' . implode(',', $inArr) . ')');
+        var_dump('SELECT category_id FROM cscart_category_descriptions WHERE category in (' . implode(',', $inArr) . ')');
         if ($q !== false) {
             while ($r = mysql_fetch_array($q)) {
                 $idArr[] = $r['category_id'];
             }
         }
         $arrForDelete = array_diff($dbCategoriesId, $inputCategoriesId, $idArr);
+        var_dump($arrForDelete);die();
 
         $res2 = true;
         $res3 = true;
