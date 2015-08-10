@@ -72,7 +72,7 @@ class Products
                 $position += 10;
                 $inArr1[] = '(' . $p['id'] . ', "ru", "' . mysql_real_escape_string($p['title']) . '", "", "", "", "", "", "", "", "", "")';
                 $inArr2[] = '(' . $p['id'] . ', ' . $p['price'] . ', 0, 1, 0)';
-                $inArr3[] = '(' . $p['id'] . ', "' . ((int)$p['art'] + $artOffset) . '", "P", "A", 1, 0 , ' .$p['count']. ', ' . $p['weight'] . ', ' . $p['length'] . ', ' . $p['width'] . ', ' . $p['height'] . ', 0, 0, ' . time() . ', ' . time() . ', 0, "N", "N", "N", "B", "N", "N", "R", "Y", "N", "N", "Y", 10, 0, "N", "", 0, 0, 0, 0, 10, "N", 0, "P", "F", "default", "' . $shipping_params . '", "", "", "", "N", "N", "Y", 0, "Y", 0, 0, "", "", "", "", "", "", "")';
+                $inArr3[] = '(' . $p['id'] . ', "' . ((int)$p['art'] + $artOffset) . '", "P", "A", 1, 0 , ' .$p['count']. ', ' . $p['weight'] . ', ' . $p['length'] . ', ' . $p['width'] . ', ' . $p['height'] . ', 0, 0, ' . time() . ', ' . time() . ', 0, "N", "N", "N", "B", "N", "Y", "R", "Y", "N", "N", "Y", 10, 0, "N", "", 0, 0, 0, 0, 10, "N", 0, "P", "F", "default", "' . $shipping_params . '", "", "", "", "N", "N", "Y", 0, "Y", 0, 0, "", "", "", "", "", "", "")';
                 $inArr4[] = '('.$p['id'].', '.$p['categoryId'].', "M", 0)';
                 if ($num == 2000) {
                     $num = 0;
