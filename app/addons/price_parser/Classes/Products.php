@@ -174,7 +174,7 @@ class Products
             $res1 = self::insertProducts($arrForInsert);
             foreach ($arrIdForInsert as $i) {
                 if (isset($images[$i])) {
-                    $imagesArr[] = $images[$i];
+                    $imagesArr[$i] = $images[$i];
                 }
             }
             if (!empty($imagesArr)) {
@@ -207,6 +207,7 @@ class Products
                 $res6 = Image::deleteImagesById($imgIdArr);
             }
         }
+        mysql_query('delete from cscart_seo_names where type="p"');
 
         return $res1 * $res2 * $res3 * $res4 * $res5 * $res6;
     }
