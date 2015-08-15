@@ -22,11 +22,11 @@ class Categories
     public static function clearCategories()
     {
         $exclude = Registry::get('addons.price_parser.excludeCategories');
-        $exclude = trim($exclude);
-        $excludeArr = explode('///', $exclude);
+        $exclude = str_replace(' ', '', $exclude);
+        $excludeArr = explode(',', $exclude);
         $inArr = [];
         foreach ($excludeArr as $e) {
-            $inArr[] = '"' . trim($e) . '"';
+            $inArr[] = '"' . $e . '"';
         }
 
         $idArr = [];
@@ -75,9 +75,8 @@ class Categories
                 $c['id']
             ];
             $parentId = $c['parentId'];
-            
             while ($parentId !== null) {
-                $idPathArr[] = $parentId;
+                $idPathArr[] = $categories[$parentId]['id'];
                 $level++;
                 $parentId = $categories[$parentId]['parentId'];
             }
@@ -120,7 +119,7 @@ class Categories
                 if ($q !== false && $q !== null) {
                     $r = mysql_result($q, 0);
                     if ($r == null) {
-                        $arrForInsert[$p['id']] = $p;
+                        $arrForInsert[] = $p;
                         $arrIdForInsert[] = $p['id'];
                     }
                     $inputCategoriesId[] = (int)$p['id'];
@@ -141,56 +140,29 @@ class Categories
         }
 
         $exclude = Registry::get('addons.price_parser.excludeCategories');
-        $exclude = trim($exclude);
-        $excludeArr = explode('///', $exclude);
+        $exclude = str_replace(' ', '', $exclude);
+        $excludeArr = explode(',', $exclude);
         $inArr = [];
+        var_dump($excludeArr);
         foreach ($excludeArr as $e) {
-            $inArr[] = '"' . trim($e) . '"';
+            $inArr[] = '"' . $e . '"';
         }
         $idArr = []; // exclude
         $q = mysql_query('SELECT category_id FROM cscart_category_descriptions WHERE category in (' . implode(',', $inArr) . ')');
+        var_dump('SELECT category_id FROM cscart_category_descriptions WHERE category in (' . implode(',', $inArr) . ')');
         if ($q !== false) {
             while ($r = mysql_fetch_array($q)) {
                 $idArr[] = $r['category_id'];
             }
         }
         $arrForDelete = array_diff($dbCategoriesId, $inputCategoriesId, $idArr);
+        var_dump($arrForDelete);die();
 
         $res2 = true;
         $res3 = true;
         if (!empty($arrForDelete)) {
             $res2 = mysql_query('DELETE FROM cscart_categories WHERE category_id in ('.implode(',', $arrForDelete).')');
             $res3 = mysql_query('DELETE FROM cscart_category_descriptions WHERE category_id in ('.implode(',', $arrForDelete).')');
-        }
-
-        $where = [];
-        foreach ($arrForDelete as $id) {
-            $where[] = 'id_path LIKE "%'.$id.'/%"';
-        }
-        $q = mysql_query('SELECT * FROM cscart_categories WHERE ' . implode(' OR ', $where));
-        while ($r = mysql_fetch_array($q)) {
-            $ids = explode('/', $r['id_path']);
-            $newPathArr = [];
-            $needUpdate = false;
-            foreach ($ids as $id) {
-                if (!in_array($id, $arrForDelete)) {
-                    $newPathArr[] = $id;
-                } else {
-                    $needUpdate = true;
-                }
-            }
-            if ($needUpdate) {
-                if (empty($newPathArr)) {
-                    mysql_query('UPDATE cscart_categories SET parent_id=0, id_path=' . $r['category_id'] . ', level=1 WHERE category_id=' . $r['category_id']);
-                }else {
-                    if ($newPathArr[0] != $r['category_id']) {
-                        $parent = $newPathArr[0];
-                    } else {
-                        $parent = 0;
-                    }
-                    mysql_query('UPDATE cscart_categories SET parent_id='.$parent.', id_path="' . implode('/', $newPathArr) . '", level=' . count($newPathArr) . ' WHERE category_id=' . $r['category_id']);
-                }
-            }
         }
 
         return $res1 * $res2 * $res3;

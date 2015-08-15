@@ -52,7 +52,7 @@
 						class="btn btn-default">Заполнить БД</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Заполнение БД категориями, товарами, изображениями и характеристиками
+					Заполнение категорий, товаров, скачивание изображений к товарам и добавление характеристик к товарам
 				</td>
 			</tr>
 
@@ -63,7 +63,7 @@
 						class="btn btn-default">Обновить категории</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Обновление категорий
+					Удалить все категории кроме тех, которые внесены в анстройки аддона и добавить категории из прайс листа
 				</td>
 			</tr>
 
@@ -74,7 +74,7 @@
 						class="btn btn-default">Обновить товары</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Добавление и удаление товаров
+					Удаление товаров, коотрые отсутствуют в прайс листе и добавление товаров, которых еще нет на сайте
 				</td>
 			</tr>
 
@@ -85,7 +85,7 @@
 						class="btn btn-default">Обновить характеристики</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Обвновление характеристик товаров
+					Удаление всех характеристик товаров и добавление характеристик из прайс листа
 				</td>
 			</tr>
 
@@ -96,7 +96,7 @@
 						class="btn btn-default">Обновить цены</a>
 				</td>
 				<td style="font-size: 12px;color: #717171;padding-top: 10px;padding-bottom: 10px;">
-					Обновление цен всех товаров
+					Обновление цен всех товаров, с учетом настроек наценки на категории
 				</td>
 			</tr>
 
@@ -112,6 +112,23 @@
             </tr>
 		</tbody>
 	</table>
+
+	<br>
+	<h3>Наценки на категории</h3>
+	<form method="post" action="{""|fn_url}">
+		{foreach from=$categories item="category"}
+		<label>
+			<input type="text" name="cm[{$category.category_id}]" placeholder="наценка в процентах" value="{$category.margin}" />
+			{$category.category}
+		</label>
+		{/foreach}
+		<input type="submit" name="dispatch[price_parser.update]" value="Submit">
+	</form>
+		
+	<br />
+	
+	<br />
+	<br /><br /><br />
 
 {/capture}
 

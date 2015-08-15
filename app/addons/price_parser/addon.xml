@@ -35,7 +35,7 @@
                         <default_value></default_value>
                     </item>
                     <item id="excludeCategories">
-                        <name>Названия категорий, которые не надо удалять (разделитель - ///)</name>
+                        <name>Названия категорий, которые не надо удалять (перечислить через зарятую)</name>
                         <type>textarea</type>
                         <default_value></default_value>
                     </item>
@@ -46,6 +46,16 @@
     </settings>
 
     <queries>
+        <item for="install">DROP TABLE IF EXISTS ?:addon_margins;</item>
+        <item for="install">
+            CREATE TABLE `?:addon_margins` (
+                `category_id` int(11) unsigned NOT NULL DEFAULT 0,
+                `margin` int(5) NOT NULL DEFAULT 0,
+                PRIMARY KEY (`category_id`)
+            ) Engine=MyISAM DEFAULT CHARSET UTF8;
+        </item>
+        <item for="uninstall">DROP TABLE IF EXISTS ?:addon_margins;</item>
+
         <item for="install">REPLACE INTO ?:language_values (lang_code, name, value) VALUES ('ru', 'price_parser', 'Парсер прайс листов')</item>
         <item for="install">REPLACE INTO ?:language_values (lang_code, name, value) VALUES ('ru', 'price_parser_menu_description', 'Наполнение магазина товарами, обновление цен, ассортимента из прайс листов.')</item>
         <item for="uninstall">DELETE FROM ?:language_values WHERE name = 'price_parser'</item>

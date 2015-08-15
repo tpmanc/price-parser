@@ -72,5 +72,53 @@ if ($mode == 'manage') {
         'js' => true
     ));
 
-    Registry::get('view')->assign('price_parser', array());
+    $dbHost = Registry::get('config.db_host');
+    $dbUser = Registry::get('config.db_user');
+    $dbPass = Registry::get('config.db_password');
+    $dbName = Registry::get('config.db_name');
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+    if (mysqli_connect_errno()) {
+        printf("Подключение к серверу MySQL невозможно. Код ошибки: %s\n", mysqli_connect_error());
+        die();
+    }
+
+    $categories = array();
+    if ($result = $mysqli->query('SELECT cscart_category_descriptions.category_id, cscart_category_descriptions.category, cscart_addon_margins.margin 
+                                    FROM cscart_category_descriptions
+                                    LEFT JOIN cscart_addon_margins 
+                                    ON cscart_addon_margins.category_id = cscart_category_descriptions.category_id
+                                    ')) { 
+        while ($row = $result->fetch_assoc()) {
+            $categories[] = $row;
+        }
+        $result->close();
+    }
+    $mysqli->close();
+
+    Registry::get('view')->assign('categories', $categories);
+}
+
+if ($mode == 'update') {
+    $categories = $_REQUEST['cm'];
+    $sql = 'INSERT INTO cscart_addon_margins(category_id, margin) VALUES';
+    $inArr = [];
+    foreach ($categories as $id => $m) {
+        if (is_numeric($m) && $m > 0) {
+            $inArr[] = '('.$id.', '.$m.')';
+        }
+    }
+
+    $dbHost = Registry::get('config.db_host');
+    $dbUser = Registry::get('config.db_user');
+    $dbPass = Registry::get('config.db_password');
+    $dbName = Registry::get('config.db_name');
+    $mysqli = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+    if (mysqli_connect_errno()) {
+        printf("Подключение к серверу MySQL невозможно. Код ошибки: %s\n", mysqli_connect_error());
+        die();
+    }
+    $mysqli->query('TRUNCATE TABLE cscart_addon_margins');
+    $mysqli->query($sql . implode(',', $inArr));
+
+    return array(CONTROLLER_STATUS_OK, 'price_parser.manage');
 }
