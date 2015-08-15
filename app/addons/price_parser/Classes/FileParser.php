@@ -196,6 +196,9 @@ class FileParser
                                 if($reader->name == $priceField){
                                     $price = $currency * (float)$reader->readString();
                                 }
+                                if($reader->name == 'categoryId'){
+                                    $categoryId = $reader->readString();
+                                }
                                 if($reader->name == 'count'){
                                     $count = $reader->readString();
                                     if ($count === '***') {
@@ -212,6 +215,7 @@ class FileParser
                             if ($reader->nodeType == \XMLReader::END_ELEMENT && $reader->localName == 'offer') {
                                 $product = [
                                     'id' => $productId,
+                                    'categoryId' => $categoryId,
                                     'price' => $price,
                                     'count' => $count,
                                 ];
@@ -219,7 +223,9 @@ class FileParser
                             }
                         }
                     }
-                    $products[] = $product;
+                    if (!empty($product)) { 
+                        $products[] = $product;
+                    }
             }
         }
 

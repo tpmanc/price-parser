@@ -116,8 +116,14 @@ class Products
         foreach ($products as $p) {
             if (isset($p['id']) && isset($p['price'])) {
                 $margin = 1;
-                if (isset($margins[$p['id']]) && is_numeric($margins[$p['id']]) && $margins[$p['id']] != 0) {
-                    $margin = 1 + ($margins[$p['id']] / 100);
+                if ($p['count'] > 0) {
+                    if (isset($margins[$p['categoryId']]) && is_numeric($margins[$p['categoryId']]) && $margins[$p['categoryId']] != 0) {
+                        $margin = 1 + ($margins[$p['categoryId']] / 100);
+                    }
+                } else {
+                    if (isset($margins[0]) && is_numeric($margins[0]) && $margins[0] != 0) {
+                        $margin = 1 + ($margins[0] / 100);
+                    }
                 }
                 $newPrice = round($p['price'] * $margin, 2);
                 $res = mysql_query('UPDATE cscart_product_prices
