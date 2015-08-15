@@ -127,7 +127,7 @@
 			{$category.category}
 		</label>
 		{/foreach}
-		<input type="submit" name="dispatch[price_parser.update]" value="Submit">
+		<input type="submit" class="btn btn-primary" name="dispatch[price_parser.update]" value="Сохранить">
 	</form>
 		
 	<br />

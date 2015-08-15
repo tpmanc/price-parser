@@ -81,6 +81,7 @@ if ($mode == 'manage') {
         printf("Подключение к серверу MySQL невозможно. Код ошибки: %s\n", mysqli_connect_error());
         die();
     }
+    $mysqli->set_charset("utf8");
 
     $categories = array();
     $missing = [];
