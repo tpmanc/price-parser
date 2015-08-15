@@ -83,6 +83,16 @@ if ($mode == 'manage') {
     }
 
     $categories = array();
+    $missing = [];
+    if ($result = $mysqli->query('SELECT category_id, margin
+                                    FROM cscart_addon_margins
+                                    WHERE category_id=0
+                                    ')) { 
+        while ($row = $result->fetch_assoc()) {
+            $missing = $row;
+        }
+        $result->close();
+    }
     if ($result = $mysqli->query('SELECT cscart_category_descriptions.category_id, cscart_category_descriptions.category, cscart_addon_margins.margin 
                                     FROM cscart_category_descriptions
                                     LEFT JOIN cscart_addon_margins 
@@ -96,6 +106,7 @@ if ($mode == 'manage') {
     $mysqli->close();
 
     Registry::get('view')->assign('categories', $categories);
+    Registry::get('view')->assign('missing', $missing);
 }
 
 if ($mode == 'update') {
@@ -119,6 +130,7 @@ if ($mode == 'update') {
     }
     $mysqli->query('TRUNCATE TABLE cscart_addon_margins');
     $mysqli->query($sql . implode(',', $inArr));
+    $mysqli->close();
 
     return array(CONTROLLER_STATUS_OK, 'price_parser.manage');
 }

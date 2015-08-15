@@ -117,7 +117,7 @@
 	<h3>Наценки на категории</h3>
 	<form method="post" action="{""|fn_url}">
 		<label>
-			<input type="text" name="cm[0]" placeholder="наценка в процентах" value="{$category.margin}" />
+			<input type="text" name="cm[0]" placeholder="наценка в процентах" value="{$missing.margin}" />
 			Отсутствующий товар
 		</label>
 
