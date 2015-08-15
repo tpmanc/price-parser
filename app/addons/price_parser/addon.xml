@@ -35,7 +35,7 @@
                         <default_value></default_value>
                     </item>
                     <item id="excludeCategories">
-                        <name>Названия категорий, которые не надо удалять (перечислить через зарятую)</name>
+                        <name>Названия категорий, которые не надо удалять (разделитель - ///)</name>
                         <type>textarea</type>
                         <default_value></default_value>
                     </item>
