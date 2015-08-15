@@ -107,11 +107,21 @@ class Products
      */
     public static function updatePrices(array $products)
     {
+        $margins = [];
+        $q = mysql_query('SELECT * FROM cscart_addon_margins');
+        while ($r = mysql_fetch_array($q)) {
+            $margins[$r['category_id']] = $r['margin'];
+        }
         $res = true;
         foreach ($products as $p) {
             if (isset($p['id']) && isset($p['price'])) {
+                $margin = 1;
+                if (isset($margins[$p['id']]) && is_numeric($margins[$p['id']]) && $margins[$p['id']] != 0) {
+                    $margin = 1 + ($margins[$p['id']] / 100);
+                }
+                $newPrice = round($p['price'] * $margin, 2);
                 $res = mysql_query('UPDATE cscart_product_prices
-                                    SET price='. mysql_real_escape_string($p['price']) .'
+                                    SET price='. mysql_real_escape_string($newPrice) .'
                                     WHERE product_id = '.mysql_real_escape_string($p['id']));
             }
         }

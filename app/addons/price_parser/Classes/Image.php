@@ -115,7 +115,7 @@ class Image
         }
 
         $rollingCurl
-            ->setCallback(function(\Request $request, \RollingCurl $rollingCurl)  use (&$imageFolder) {
+            ->setCallback(function(\Request $request, \RollingCurl $rollingCurl)  use (&$imageFolder, &$downloadSuccess) {
                 $productId = mb_strcut($request->getUrl(), strpos($request->getUrl(), '#') + 1);
                 file_put_contents($imageFolder . $productId.'.jpg', $request->getResponseText());
                 $downloadSuccess[] = $productId;

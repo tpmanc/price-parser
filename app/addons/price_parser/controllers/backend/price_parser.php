@@ -103,7 +103,7 @@ if ($mode == 'update') {
     $sql = 'INSERT INTO cscart_addon_margins(category_id, margin) VALUES';
     $inArr = [];
     foreach ($categories as $id => $m) {
-        if (is_numeric($m) && $m > 0) {
+        if (is_numeric($m) && $m != 0) {
             $inArr[] = '('.$id.', '.$m.')';
         }
     }
