@@ -37,7 +37,7 @@ class Categories
             }
         }
         
-        mysql_query('delete from cscart_seo_names where type="с"');
+        mysql_query('delete from cscart_seo_names where type="c"');
 
         $res1 = mysql_query("DELETE FROM `cscart_category_descriptions` WHERE category_id NOT IN (" . implode(',', $idArr) . ")");
         $res2 = mysql_query("DELETE FROM `cscart_categories` WHERE category_id NOT IN (" . implode(',', $idArr) . ")");
