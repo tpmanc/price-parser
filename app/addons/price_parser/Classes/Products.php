@@ -107,22 +107,43 @@ class Products
      */
     public static function updatePrices(array $products)
     {
+        $q = mysql_query('select margin from cscart_addon_margins where category_id=0');
+        if ($q !== false) {
+            $notAvail = mysql_result($q, 0);
+        } else {
+            $notAvail = 1;
+        }
+
         $margins = [];
-        $q = mysql_query('SELECT * FROM cscart_addon_margins');
+        $q = mysql_query('SELECT 
+                            cscart_categories.category_id,
+                            cscart_categories.parent_id,
+                            cscart_addon_margins.margin
+                            FROM cscart_categories
+                            LEFT JOIN cscart_addon_margins 
+                                ON cscart_addon_margins.category_id = cscart_categories.category_id');
         while ($r = mysql_fetch_array($q)) {
-            $margins[$r['category_id']] = $r['margin'];
+            $margins[$r['category_id']] = [
+                'parentId' => $r['parent_id'],
+                'margin' => $r['margin'],
+            ];
         }
         $res = true;
         foreach ($products as $p) {
             if (isset($p['id']) && isset($p['price'])) {
                 $margin = 1;
                 if ($p['count'] > 0) {
-                    if (isset($margins[$p['categoryId']]) && is_numeric($margins[$p['categoryId']]) && $margins[$p['categoryId']] != 0) {
-                        $margin = 1 + ($margins[$p['categoryId']] / 100);
+                    $elem = $margins[$p['categoryId']];
+                    while ($elem['parentId'] != 0 && !isset($elem['margin']) && $elem['margin'] == 0 ) {
+                        $elem = $margins[$elem['parentId']];
+                    }
+
+                    if (isset($elem['margin']) && is_numeric($elem['margin']) && $elem['margin'] != 0) {
+                        $margin = 1 + ($elem['margin'] / 100);
                     }
                 } else {
-                    if (isset($margins[0]) && is_numeric($margins[0]) && $margins[0] != 0) {
-                        $margin = 1 + ($margins[0] / 100);
+                    if (isset($notAvail) && is_numeric($notAvail) && $notAvail != 0) {
+                        $margin = 1 + ($notAvail / 100);
                     }
                 }
                 $newPrice = round($p['price'] * $margin, 2);
